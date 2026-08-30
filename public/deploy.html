@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deploy Bot - ADEZ TECH PRO</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-logo">A</div>
+      <div>
+        <h2>ADEZ TECH</h2>
+        <span>PRO PANEL</span>
+      </div>
+    </div>
+
+    <nav>
+      <a href="/dashboard.html" class="nav-link"><span>▣</span> Dashboard</a>
+      <a href="/deploy.html" class="nav-link active"><span>🤖</span> Deploy Bot</a>
+      <a href="/bots.html" class="nav-link"><span>📱</span> My Bots</a>
+      <a href="/boosting.html" class="nav-link"><span>🚀</span> Social Media Boosting</a>
+      <a href="/wallet.html" class="nav-link"><span>💰</span> Wallet</a>
+      <a href="/orders.html" class="nav-link"><span>📦</span> Orders</a>
+      <a href="/referrals.html" class="nav-link"><span>👥</span> Earn Money</a>
+      <a href="/documentation.html" class="nav-link"><span>📚</span> API Documentation</a>
+      <a href="/payment.html" class="nav-link"><span>💳</span> Payment</a>
+      <a href="/settings.html" class="nav-link"><span>⚙️</span> Settings</a>
+    </nav>
+
+    <button class="logout" onclick="logout()">🚪 Logout</button>
+  </aside>
+
+  <main class="main">
+
+    <header class="topbar">
+      <button class="menu-button" onclick="toggleSidebar()">☰</button>
+
+      <div>
+        <h1>Deploy Bot</h1>
+        <p>Create a new WhatsApp bot</p>
+      </div>
+    </header>
+
+    <section class="content">
+
+      <div class="deploy-grid">
+
+        <div class="form-card">
+
+          <h2>Deploy New Bot</h2>
+
+          <p class="form-description">
+            Enter your bot details below to create a new bot.
+          </p>
+
+          <div id="message" class="message"></div>
+
+          <form id="deployForm">
+
+            <label>Bot Name</label>
+
+            <input
+              type="text"
+              id="botName"
+              placeholder="Example: ADEZ-MD"
+              required
+            >
+
+            <label>WhatsApp Number</label>
+
+            <input
+              type="tel"
+              id="number"
+              placeholder="254700000000"
+              required
+            >
+
+            <small class="input-help">
+              Use international format without + or spaces.
+            </small>
+
+            <button class="auth-button" type="submit">
+              🚀 Create Bot
+            </button>
+
+          </form>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <div class="large-icon">🤖</div>
+
+          <h2>WhatsApp Bot</h2>
+
+          <p>
+            Create and manage your WhatsApp automation
+            bots from one place.
+          </p>
+
+          <div class="feature">
+            <span>✓</span>
+            Secure account management
+          </div>
+
+          <div class="feature">
+            <span>✓</span>
+            Bot status monitoring
+          </div>
+
+          <div class="feature">
+            <span>✓</span>
+            Centralized bot management
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<script>
+
+function toggleSidebar() {
+  document.querySelector(".sidebar").classList.toggle("open");
+}
+
+async function logout() {
+
+  await fetch("/api/logout", {
+    method: "POST"
+  });
+
+  window.location.href = "/login.html";
+}
+
+
+document.getElementById("deployForm")
+.addEventListener("submit", async function(e) {
+
+  e.preventDefault();
+
+  const message =
+    document.getElementById("message");
+
+  const name =
+    document.getElementById("botName").value.trim();
+
+  const number =
+    document.getElementById("number").value.trim();
+
+  message.textContent = "Creating bot...";
+  message.className = "message";
+
+
+  try {
+
+    const response = await fetch("/api/bots", {
+
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({
+        name,
+        number
+      })
+
+    });
+
+
+    const data = await response.json();
+
+
+    if (response.status === 401) {
+      window.location.href = "/login.html";
+      return;
+    }
+
+
+    if (!data.success) {
+
+      message.textContent = data.message;
+      message.className = "message error";
+
+      return;
+    }
+
+
+    message.textContent =
+      "Bot created successfully!";
+
+    message.className =
+      "message success";
+
+
+    document.getElementById("deployForm").reset();
+
+
+    setTimeout(() => {
+      window.location.href = "/bots.html";
+    }, 1000);
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    message.textContent =
+      "Unable to connect to server.";
+
+    message.className =
+      "message error";
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
