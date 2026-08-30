@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>API | ADEZ TECH PRO</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #101828;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #101828;
+      color: white;
+      padding: 22px 15px;
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 20;
+      transition: .25s;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 5px 10px 30px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      background: linear-gradient(135deg,#2563eb,#06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .brand h2 {
+      font-size: 16px;
+    }
+
+    .brand span {
+      display: block;
+      color: #98a2b3;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      margin-top: 2px;
+    }
+
+    nav {
+      display: grid;
+      gap: 5px;
+    }
+
+    .nav-link {
+      color: #b7c2d0;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: #1d2939;
+      color: white;
+    }
+
+    .logout {
+      position: absolute;
+      left: 15px;
+      right: 15px;
+      bottom: 22px;
+      height: 42px;
+      border: 1px solid #344054;
+      background: transparent;
+      color: #d0d5dd;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .main {
+      width: 100%;
+      margin-left: 250px;
+    }
+
+    .topbar {
+      height: 78px;
+      background: white;
+      border-bottom: 1px solid #eaecf0;
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
+      gap: 15px;
+    }
+
+    .topbar h1 {
+      font-size: 20px;
+    }
+
+    .topbar p {
+      color: #667085;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .menu {
+      display: none;
+      border: 0;
+      background: transparent;
+      font-size: 22px;
+    }
+
+    .content {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #eaecf0;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 7px;
+    }
+
+    .description {
+      color: #667085;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .key-box {
+      display: flex;
+      gap: 10px;
+    }
+
+    .key-box input {
+      flex: 1;
+      height: 45px;
+      border: 1px solid #d0d5dd;
+      border-radius: 8px;
+      padding: 0 12px;
+      font-family: monospace;
+      font-size: 12px;
+      background: #f9fafb;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .copy-btn,
+    .generate-btn {
+      border: 0;
+      border-radius: 8px;
+      padding: 0 15px;
+      background: #2563eb;
+      color: white;
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .generate-btn {
+      height: 42px;
+      margin-top: 12px;
+    }
+
+    .warning {
+      background: #fffaeb;
+      color: #b54708;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      line-height: 1.6;
+      margin-top: 15px;
+    }
+
+    .endpoint {
+      border: 1px solid #eaecf0;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .endpoint-head {
+      padding: 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f9fafb;
+    }
+
+    .method {
+      padding: 5px 7px;
+      border-radius: 5px;
+      background: #dcfce7;
+      color: #166534;
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .endpoint-url {
+      font-family: monospace;
+      font-size: 11px;
+      word-break: break-all;
+    }
+
+    .endpoint-body {
+      padding: 13px;
+      color: #667085;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    pre {
+      background: #101828;
+      color: #d1e9ff;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 10px;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    .status {
+      display: inline-block;
+      background: #ecfdf3;
+      color: #027a48;
+      border-radius: 20px;
+      padding: 5px 9px;
+      font-size: 9px;
+      margin-top: 5px;
+    }
+
+    @media(max-width:800px) {
+
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main {
+        margin-left: 0;
+      }
+
+      .menu {
+        display: block;
+      }
+
+      .topbar {
+        padding: 0 18px;
+      }
+
+      .content {
+        padding: 18px;
+      }
+
+      .key-box {
+        flex-direction: column;
+      }
+
+      .copy-btn {
+        height: 42px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="app">
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+
+      <div class="brand-logo">A</div>
+
+      <div>
+        <h2>ADEZ TECH</h2>
+        <span>PRO PANEL</span>
+      </div>
+
+    </div>
+
+    <nav>
+
+      <a href="/dashboard.html" class="nav-link">
+        ▣ Dashboard
+      </a>
+
+      <a href="/deploy.html" class="nav-link">
+        🤖 Deploy Bot
+      </a>
+
+      <a href="/bots.html" class="nav-link">
+        📱 My Bots
+      </a>
+
+      <a href="/boosting.html" class="nav-link">
+        🚀 Social Media Boosting
+      </a>
+
+      <a href="/topup.html" class="nav-link">
+        💰 Top Up
+      </a>
+
+      <a href="/payment.html" class="nav-link">
+        💳 Payment
+      </a>
+
+      <a href="/orders.html" class="nav-link">
+        📦 Orders
+      </a>
+
+      <a href="/referrals.html" class="nav-link">
+        👥 Earn Money
+      </a>
+
+      <a href="/api.html" class="nav-link active">
+        🔑 API
+      </a>
+
+      <a href="/settings.html" class="nav-link">
+        ⚙️ Settings
+      </a>
+
+    </nav>
+
+    <button class="logout" onclick="logout()">
+      🚪 Logout
+    </button>
+
+  </aside>
+
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <button
+        class="menu"
+        onclick="toggleSidebar()"
+      >
+        ☰
+      </button>
+
+      <div>
+        <h1>API Access</h1>
+        <p>Manage your ADEZ TECH API credentials</p>
+      </div>
+
+    </header>
+
+
+    <section class="content">
+
+
+      <!-- API KEY -->
+
+      <div class="card">
+
+        <h2>Your API Key</h2>
+
+        <p class="description">
+          Use your API key to authenticate requests
+          to the ADEZ TECH API.
+        </p>
+
+        <div class="key-box">
+
+          <input
+            id="apiKey"
+            type="password"
+            value=""
+            placeholder="Loading API key..."
+            readonly
+          >
+
+          <button
+            class="copy-btn"
+            onclick="copyKey()"
+          >
+            Copy
+          </button>
+
+        </div>
+
+        <button
+          class="generate-btn"
+          onclick="generateKey()"
+        >
+          Generate / Regenerate API Key
+        </button>
+
+        <div class="warning">
+          ⚠️ Keep your API key private. Never publish
+          it in frontend JavaScript, GitHub repositories,
+          screenshots or public websites.
+        </div>
+
+      </div>
+
+
+      <!-- API STATUS -->
+
+      <div class="card">
+
+        <h2>API Status</h2>
+
+        <p class="description">
+          Current status of your API access.
+        </p>
+
+        <span class="status">
+          ● API Available
+        </span>
+
+      </div>
+
+
+      <!-- ENDPOINTS -->
+
+      <div class="card">
+
+        <h2>API Documentation</h2>
+
+        <p class="description">
+          Available endpoints for your ADEZ TECH
+          services.
+        </p>
+
+
+        <div class="endpoint">
+
+          <div class="endpoint-head">
+
+            <span class="method">
+              GET
+            </span>
+
+            <span class="endpoint-url">
+              /api/services
+            </span>
+
+          </div>
+
+          <div class="endpoint-body">
+
+            Returns the available services.
+
+            <pre>curl -X GET \
+https://your-domain.com/api/services \
+-H "X-API-Key: YOUR_API_KEY"</pre>
+
+          </div>
+
+        </div>
+
+
+        <div class="endpoint">
+
+          <div class="endpoint-head">
+
+            <span class="method">
+              POST
+            </span>
+
+            <span class="endpoint-url">
+              /api/order
+            </span>
+
+          </div>
+
+          <div class="endpoint-body">
+
+            Creates a service order.
+
+            <pre>curl -X POST \
+https://your-domain.com/api/order \
+-H "Content-Type: application/json" \
+-H "X-API-Key: YOUR_API_KEY" \
+-d '{
+  "service": "SERVICE_ID",
+  "link": "https://example.com",
+  "quantity": 100
+}'</pre>
+
+          </div>
+
+        </div>
+
+
+        <div class="endpoint">
+
+          <div class="endpoint-head">
+
+            <span class="method">
+              GET
+            </span>
+
+            <span class="endpoint-url">
+              /api/order/ORDER_ID
+            </span>
+
+          </div>
+
+          <div class="endpoint-body">
+
+            Checks the status of an order.
+
+            <pre>curl -X GET \
+https://your-domain.com/api/order/ORDER_ID \
+-H "X-API-Key: YOUR_API_KEY"</pre>
+
+          </div>
+
+        </div>
+
+
+        <div class="endpoint">
+
+          <div class="endpoint-head">
+
+            <span class="method">
+              GET
+            </span>
+
+            <span class="endpoint-url">
+              /api/balance
+            </span>
+
+          </div>
+
+          <div class="endpoint-body">
+
+            Returns the current wallet balance.
+
+            <pre>curl -X GET \
+https://your-domain.com/api/balance \
+-H "X-API-Key: YOUR_API_KEY"</pre>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="card">
+
+        <h2>Example Response</h2>
+
+        <p class="description">
+          A successful API response should return
+          JSON data.
+        </p>
+
+        <pre>{
+  "success": true,
+  "balance": 1500.00,
+  "currency": "KES"
+}</pre>
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<script>
+
+function toggleSidebar() {
+
+  document
+    .getElementById("sidebar")
+    .classList.toggle("open");
+
+}
+
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+async function loadApiKey() {
+
+  try {
+
+    const response =
+      await fetch(
+        "/api/user/api-key",
+        {
+          credentials: "include"
+        }
+      );
+
+    if (response.status === 401) {
+
+      window.location.href =
+        "/login.html";
+
+      return;
+
+    }
+
+    const data =
+      await response.json();
+
+    if (data.apiKey) {
+
+      document
+        .getElementById("apiKey")
+        .value = data.apiKey;
+
+    } else {
+
+      document
+        .getElementById("apiKey")
+        .placeholder =
+          "No API key generated";
+
+    }
+
+  } catch (error) {
+
+    console.error(error);
+
+    document
+      .getElementById("apiKey")
+      .placeholder =
+        "Unable to load API key";
+
+  }
+
+}
+
+
+async function copyKey() {
+
+  const input =
+    document.getElementById("apiKey");
+
+  if (!input.value) {
+
+    alert("No API key available.");
+
+    return;
+
+  }
+
+  try {
+
+    await navigator.clipboard
+      .writeText(input.value);
+
+    alert("API key copied.");
+
+  } catch {
+
+    input.type = "text";
+
+    input.select();
+
+    document.execCommand("copy");
+
+    input.type = "password";
+
+    alert("API key copied.");
+
+  }
+
+}
+
+
+async function generateKey() {
+
+  const confirmed =
+    confirm(
+      "Regenerating your API key will invalidate the old key. Continue?"
+    );
+
+  if (!confirmed) return;
+
+  try {
+
+    const response =
+      await fetch(
+        "/api/user/api-key/regenerate",
+        {
+          method: "POST",
+          credentials: "include"
+        }
+      );
+
+    const data =
+      await response.json();
+
+    if (!response.ok || !data.success) {
+
+      alert(
+        data.message ||
+        "Unable to generate API key."
+      );
+
+      return;
+
+    }
+
+    document
+      .getElementById("apiKey")
+      .value = data.apiKey;
+
+    alert("New API key generated.");
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      "Unable to connect to the server."
+    );
+
+  }
+
+}
+
+
+async function logout() {
+
+  try {
+
+    await fetch(
+      "/api/logout",
+      {
+        method: "POST"
+      }
+    );
+
+  } finally {
+
+    window.location.href =
+      "/login.html";
+
+  }
+
+}
+
+
+loadApiKey();
+
+</script>
+
+</body>
+
+            </html>
