@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Create Account | ADEZ TECH PRO</title>
+  <title>ADEZ TECH PRO | Sign Up</title>
 
   <style>
     * {
@@ -13,136 +13,208 @@
       padding: 0;
     }
 
+    :root {
+      --bg: #080d13;
+      --card: #14263b;
+      --input: #0c1725;
+      --blue: #2458ff;
+      --blue-light: #3470ff;
+      --text: #f4f7fb;
+      --muted: #8d9bad;
+      --border: #263c57;
+      --danger: #ff5c67;
+      --success: #39d98a;
+    }
+
     body {
       min-height: 100vh;
-      background: #0b0f12;
-      color: #e8edf5;
-      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(
+          circle at top,
+          #10213a 0%,
+          var(--bg) 48%
+        );
+
+      color: var(--text);
+      font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 25px;
+
+      padding: 20px;
     }
 
-    .register-card {
+    .page {
       width: 100%;
-      max-width: 635px;
-      background: #14253a;
-      border-radius: 23px;
-      padding: 28px 23px 38px;
-      box-shadow: 0 15px 45px rgba(0,0,0,.35);
+      max-width: 460px;
     }
 
     /* LOGO */
 
     .logo-area {
       text-align: center;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
     }
 
     .logo {
-      width: 82px;
-      height: 82px;
-      margin: 0 auto 16px;
+      width: 76px;
+      height: 76px;
+
+      margin: 0 auto 14px;
+
       border-radius: 22px;
-      background: #101b2c;
-      border: 1px solid #1e2c43;
+
+      background:
+        radial-gradient(
+          circle,
+          #194987,
+          #07111d 70%
+        );
+
+      border: 2px solid var(--blue);
+
       display: flex;
       align-items: center;
       justify-content: center;
+
+      color: #38dfff;
+
+      font-size: 14px;
+      font-weight: 900;
+
+      line-height: 1.1;
+
       box-shadow:
-        0 0 25px rgba(30, 90, 255, .12);
+        0 0 25px rgba(36,88,255,.25);
     }
 
-    .logo-inner {
-      width: 58px;
-      height: 58px;
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #20d9ff;
-      font-size: 25px;
-      font-weight: bold;
-      border: 2px solid #273b59;
+    .brand {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: .5px;
     }
 
-    .brand-line {
-      color: #2860ef;
-      font-size: 16px;
-      font-weight: 600;
-      margin-top: 4px;
+    .brand span {
+      color: #909baa;
     }
 
-    /* TITLE */
-
-    h1 {
-      text-align: center;
-      font-size: 31px;
-      margin-top: 25px;
-      margin-bottom: 8px;
-      letter-spacing: -.5px;
+    .tagline {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 6px;
     }
 
-    .subtitle {
-      text-align: center;
-      color: #9ba8ba;
-      font-size: 18px;
-      margin-bottom: 35px;
+    /* CARD */
+
+    .card {
+      background: var(--card);
+
+      border: 1px solid var(--border);
+
+      border-radius: 25px;
+
+      padding: 28px 24px 25px;
+
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.35);
+    }
+
+    .heading {
+      margin-bottom: 24px;
+    }
+
+    .heading h1 {
+      font-size: 27px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .heading p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
     }
 
     /* FORM */
 
     .form-group {
-      margin-bottom: 21px;
+      margin-bottom: 17px;
     }
 
     label {
       display: block;
-      color: #9ba8ba;
-      font-size: 15px;
+
+      color: #cbd4df;
+
+      font-size: 13px;
       font-weight: 700;
-      letter-spacing: .8px;
-      margin-bottom: 10px;
+
+      margin-bottom: 8px;
+    }
+
+    .input-wrap {
+      position: relative;
     }
 
     input {
       width: 100%;
-      height: 61px;
-      border: 0;
-      outline: none;
-      border-radius: 11px;
-      padding: 0 17px;
-      background: #111d2b;
-      color: white;
-      font-size: 17px;
-    }
 
-    input::placeholder {
-      color: #8794a6;
+      height: 53px;
+
+      background: var(--input);
+
+      border: 1px solid var(--border);
+
+      border-radius: 13px;
+
+      outline: none;
+
+      color: white;
+
+      font-size: 15px;
+
+      padding: 0 15px;
+
+      transition: .2s;
     }
 
     input:focus {
-      box-shadow: 0 0 0 2px #2456ed;
+      border-color: var(--blue);
+
+      box-shadow:
+        0 0 0 3px rgba(36,88,255,.12);
     }
 
-    .password-wrap {
-      position: relative;
+    input::placeholder {
+      color: #667589;
     }
 
-    .password-wrap input {
+    .password-input {
       padding-right: 55px;
     }
 
-    .eye {
+    .show-password {
       position: absolute;
-      right: 18px;
+
+      right: 14px;
       top: 50%;
+
       transform: translateY(-50%);
+
+      border: 0;
+
+      background: transparent;
+
+      color: #8796a8;
+
       cursor: pointer;
-      color: #8390a3;
-      font-size: 21px;
-      user-select: none;
+
+      font-size: 18px;
     }
 
     /* TERMS */
@@ -151,21 +223,33 @@
       display: flex;
       align-items: flex-start;
       gap: 10px;
-      margin: 5px 2px 25px;
-      color: #929eaf;
-      font-size: 12px;
-      line-height: 1.5;
+
+      margin: 7px 0 20px;
     }
 
     .terms input {
       width: 17px;
       height: 17px;
-      margin-top: 1px;
-      accent-color: #2457ed;
+
+      margin-top: 2px;
+
+      accent-color: var(--blue);
+    }
+
+    .terms label {
+      margin: 0;
+
+      font-size: 12px;
+
+      color: #8997a8;
+
+      line-height: 1.5;
+
+      font-weight: 400;
     }
 
     .terms a {
-      color: #2860ef;
+      color: #4d79ff;
       text-decoration: none;
     }
 
@@ -173,41 +257,81 @@
 
     .signup-btn {
       width: 100%;
-      height: 62px;
+
+      height: 54px;
+
       border: 0;
-      border-radius: 13px;
-      background: #2455eb;
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #2458ff,
+          #1642d4
+        );
+
       color: white;
-      font-size: 18px;
-      font-weight: 700;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
       cursor: pointer;
-      box-shadow: 0 7px 20px rgba(37, 85, 235, .3);
+
       transition: .2s;
+
+      box-shadow:
+        0 8px 20px rgba(36,88,255,.2);
     }
 
     .signup-btn:hover {
-      background: #1d48d2;
+      transform: translateY(-1px);
+
+      box-shadow:
+        0 10px 25px rgba(36,88,255,.3);
     }
 
     .signup-btn:disabled {
       opacity: .6;
       cursor: not-allowed;
+      transform: none;
     }
 
-    /* LOGIN */
+    /* MESSAGE */
 
-    .login-line {
-      text-align: center;
-      margin-top: 25px;
-      color: #98a4b5;
-      font-size: 15px;
+    .message {
+      display: none;
+
+      padding: 12px 14px;
+
+      border-radius: 11px;
+
+      margin-bottom: 17px;
+
+      font-size: 13px;
+
+      line-height: 1.4;
     }
 
-    .login-line a {
-      color: #2860ef;
-      font-weight: 700;
-      text-decoration: none;
-      margin-left: 5px;
+    .message.error {
+      display: block;
+
+      color: #ffadb2;
+
+      background: rgba(255,70,80,.1);
+
+      border: 1px solid rgba(255,70,80,.2);
+    }
+
+    .message.success {
+      display: block;
+
+      color: #9df2c5;
+
+      background: rgba(57,217,138,.1);
+
+      border: 1px solid rgba(57,217,138,.2);
     }
 
     /* DIVIDER */
@@ -215,111 +339,131 @@
     .divider {
       display: flex;
       align-items: center;
-      gap: 15px;
-      margin: 30px 0 25px;
-      color: #8793a4;
-      font-size: 15px;
+
+      gap: 12px;
+
+      margin: 23px 0;
     }
 
     .divider::before,
     .divider::after {
       content: "";
-      height: 1px;
+
       flex: 1;
-      background: #29394d;
+
+      height: 1px;
+
+      background: var(--border);
+    }
+
+    .divider span {
+      color: #718095;
+      font-size: 12px;
     }
 
     /* SOCIAL */
 
     .social-buttons {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
 
-    .social-btn {
-      height: 54px;
-      border: 0;
-      border-radius: 10px;
-      background: transparent;
-      color: #d9e0ea;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      grid-template-columns: 1fr 1fr;
+
       gap: 10px;
     }
 
-    .google-icon {
-      font-weight: 900;
-      font-size: 21px;
-      color: #4285f4;
+    .social-btn {
+      height: 48px;
+
+      border-radius: 12px;
+
+      border: 1px solid var(--border);
+
+      background: #0d1928;
+
+      color: #dce3ec;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      text-decoration: none;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 8px;
     }
 
-    .github-icon {
-      font-size: 21px;
+    .social-btn:hover {
+      border-color: var(--blue);
+      background: #102039;
     }
 
-    /* MESSAGE */
+    /* LOGIN */
 
-    .message {
-      display: none;
-      padding: 13px;
-      border-radius: 9px;
-      font-size: 12px;
-      line-height: 1.5;
-      margin-bottom: 18px;
+    .login-link {
+      text-align: center;
+
+      color: #8997a8;
+
+      font-size: 13px;
+
+      margin-top: 22px;
     }
 
-    .message.error {
-      display: block;
-      background: #3a171b;
-      color: #ffb4b4;
+    .login-link a {
+      color: #4d79ff;
+
+      font-weight: 800;
+
+      text-decoration: none;
     }
 
-    .message.success {
-      display: block;
-      background: #123528;
-      color: #8ee8bd;
+    /* FOOTER */
+
+    .footer {
+      text-align: center;
+
+      color: #596879;
+
+      font-size: 11px;
+
+      margin-top: 18px;
     }
 
     /* MOBILE */
 
-    @media (max-width: 600px) {
+    @media (max-width: 480px) {
+
       body {
-        padding: 15px;
-        align-items: center;
+        padding: 14px;
+        align-items: flex-start;
       }
 
-      .register-card {
-        padding: 25px 22px 30px;
-        border-radius: 21px;
+      .page {
+        margin-top: 15px;
       }
 
-      h1 {
-        font-size: 29px;
+      .card {
+        padding: 25px 19px 22px;
+        border-radius: 22px;
       }
 
-      .subtitle {
-        font-size: 16px;
+      .heading h1 {
+        font-size: 25px;
       }
 
-      input {
-        height: 59px;
+      .logo {
+        width: 70px;
+        height: 70px;
       }
 
-      .signup-btn {
-        height: 61px;
-      }
-
-      .social-buttons {
-        gap: 5px;
-      }
-
-      .social-btn {
-        font-size: 15px;
+      .brand {
+        font-size: 21px;
       }
     }
   </style>
@@ -327,137 +471,177 @@
 
 <body>
 
-  <div class="register-card">
+<div class="page">
 
-    <!-- LOGO -->
-    <div class="logo-area">
+  <!-- LOGO -->
 
-      <div class="logo">
-        <div class="logo-inner">
-          ⌂
-        </div>
-      </div>
+  <div class="logo-area">
 
-      <div class="brand-line">
-        Bots . Boosting . VPS
-      </div>
-
+    <div class="logo">
+      ADEZ<br>TECH
     </div>
 
+    <div class="brand">
+      ADEZ <span>TECH PRO</span>
+    </div>
 
-    <!-- TITLE -->
+    <div class="tagline">
+      Bots • SMM • Automation
+    </div>
 
-    <h1>Create Account</h1>
+  </div>
 
-    <p class="subtitle">
-      Create your account to get started
-    </p>
+
+  <!-- REGISTER CARD -->
+
+  <div class="card">
+
+    <div class="heading">
+
+      <h1>
+        Create Account
+      </h1>
+
+      <p>
+        Create your ADEZ TECH PRO account
+        and get started.
+      </p>
+
+    </div>
 
 
     <!-- MESSAGE -->
 
     <div
       id="message"
-      class="message"
-    ></div>
+      class="message">
+    </div>
 
 
     <!-- FORM -->
 
-    <form id="registerForm">
+    <form
+      id="registerForm"
+      autocomplete="on">
+
+
+      <!-- USERNAME -->
 
       <div class="form-group">
 
         <label for="username">
-          USERNAME
+          Username
         </label>
 
         <input
+          type="text"
           id="username"
           name="username"
-          type="text"
-          placeholder="Choose a username"
-          autocomplete="username"
+          placeholder="Enter username"
           minlength="3"
           maxlength="30"
-          required
-        >
+          autocomplete="username"
+          required>
 
       </div>
 
+
+      <!-- EMAIL -->
 
       <div class="form-group">
 
         <label for="email">
-          EMAIL
+          Email Address
         </label>
 
         <input
+          type="email"
           id="email"
           name="email"
-          type="email"
           placeholder="Enter your email"
           autocomplete="email"
-          required
-        >
+          required>
 
       </div>
 
 
+      <!-- PHONE -->
+
+      <div class="form-group">
+
+        <label for="phone">
+          Phone Number
+        </label>
+
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="e.g. 0712345678"
+          autocomplete="tel"
+          required>
+
+      </div>
+
+
+      <!-- PASSWORD -->
+
       <div class="form-group">
 
         <label for="password">
-          PASSWORD
+          Password
         </label>
 
-        <div class="password-wrap">
+        <div class="input-wrap">
 
           <input
+            class="password-input"
+            type="password"
             id="password"
             name="password"
-            type="password"
             placeholder="Create a password"
-            autocomplete="new-password"
             minlength="6"
-            required
-          >
+            autocomplete="new-password"
+            required>
 
-          <span
-            class="eye"
-            onclick="togglePassword('password', this)"
-          >
-            ◉
-          </span>
+          <button
+            type="button"
+            class="show-password"
+            onclick="togglePassword('password', this)">
+            👁
+          </button>
 
         </div>
 
       </div>
 
 
+      <!-- CONFIRM PASSWORD -->
+
       <div class="form-group">
 
         <label for="confirmPassword">
-          CONFIRM PASSWORD
+          Confirm Password
         </label>
 
-        <div class="password-wrap">
+        <div class="input-wrap">
 
           <input
+            class="password-input"
+            type="password"
             id="confirmPassword"
             name="confirmPassword"
-            type="password"
             placeholder="Confirm your password"
-            autocomplete="new-password"
             minlength="6"
-            required
-          >
+            autocomplete="new-password"
+            required>
 
-          <span
-            class="eye"
-            onclick="togglePassword('confirmPassword', this)"
-          >
-            ◉
-          </span>
+          <button
+            type="button"
+            class="show-password"
+            onclick="togglePassword('confirmPassword', this)">
+            👁
+          </button>
 
         </div>
 
@@ -469,326 +653,333 @@
       <div class="terms">
 
         <input
-          id="terms"
           type="checkbox"
-          required
-        >
+          id="terms"
+          required>
 
-        <div>
+        <label for="terms">
+
           I agree to the
-          <a href="/terms.html">
+          <a href="#">
             Terms of Service
           </a>
           and
-          <a href="/privacy.html">
+          <a href="#">
             Privacy Policy
           </a>.
-        </div>
+
+        </label>
 
       </div>
 
 
-      <!-- REGISTER -->
+      <!-- SUBMIT -->
 
       <button
         type="submit"
         class="signup-btn"
-        id="signupButton"
-      >
-        SIGN UP
+        id="signupBtn">
+
+        Create Account
+
       </button>
 
     </form>
 
 
-    <!-- LOGIN -->
+    <!-- SOCIAL -->
 
-    <div class="login-line">
+    <div class="divider">
+      <span>OR SIGN UP WITH</span>
+    </div>
 
-      Already have an account?
+    <div class="social-buttons">
 
-      <a href="/login.html">
-        Log In
+      <a
+        href="/auth/github"
+        class="social-btn">
+
+        ◉ GitHub
+
+      </a>
+
+      <a
+        href="/auth/google"
+        class="social-btn">
+
+        G Google
+
       </a>
 
     </div>
 
 
-    <!-- DIVIDER -->
+    <!-- LOGIN -->
 
-    <div class="divider">
-      or continue with
-    </div>
+    <div class="login-link">
 
+      Already have an account?
 
-    <!-- SOCIAL LOGIN -->
-
-    <div class="social-buttons">
-
-      <button
-        class="social-btn"
-        onclick="googleLogin()"
-      >
-
-        <span class="google-icon">
-          G
-        </span>
-
-        Google
-
-      </button>
-
-
-      <button
-        class="social-btn"
-        onclick="githubLogin()"
-      >
-
-        <span class="github-icon">
-          ◉
-        </span>
-
-        GitHub
-
-      </button>
+      <a href="/login.html">
+        Login
+      </a>
 
     </div>
 
   </div>
 
 
+  <div class="footer">
+    © 2026 ADEZ TECH PRO. All rights reserved.
+  </div>
+
+</div>
+
+
 <script>
 
-  function togglePassword(id, element) {
+/* =========================
+   PASSWORD VISIBILITY
+========================= */
 
-    const input =
-      document.getElementById(id);
+function togglePassword(id, button) {
 
-    if (input.type === "password") {
+  const input =
+    document.getElementById(id);
 
-      input.type = "text";
-      element.textContent = "◉";
+  if (input.type === "password") {
 
-    } else {
+    input.type = "text";
 
-      input.type = "password";
-      element.textContent = "◉";
+    button.textContent = "🙈";
 
+  } else {
+
+    input.type = "password";
+
+    button.textContent = "👁";
+
+  }
+
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(text, type) {
+
+  const message =
+    document.getElementById("message");
+
+  message.textContent = text;
+
+  message.className =
+    "message " + type;
+
+}
+
+
+/* =========================
+   REGISTER
+========================= */
+
+document
+  .getElementById("registerForm")
+  .addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+
+    const username =
+      document
+        .getElementById("username")
+        .value
+        .trim();
+
+
+    const email =
+      document
+        .getElementById("email")
+        .value
+        .trim();
+
+
+    const phone =
+      document
+        .getElementById("phone")
+        .value
+        .trim();
+
+
+    const password =
+      document
+        .getElementById("password")
+        .value;
+
+
+    const confirmPassword =
+      document
+        .getElementById("confirmPassword")
+        .value;
+
+
+    const button =
+      document
+        .getElementById("signupBtn");
+
+
+    /* PASSWORD CHECK */
+
+    if (password !== confirmPassword) {
+
+      showMessage(
+        "Passwords do not match.",
+        "error"
+      );
+
+      return;
     }
 
-  }
 
+    if (password.length < 6) {
 
-  function showMessage(text, type) {
+      showMessage(
+        "Password must contain at least 6 characters.",
+        "error"
+      );
 
-    const message =
-      document.getElementById("message");
+      return;
+    }
 
-    message.textContent = text;
 
-    message.className =
-      "message " + type;
+    /* DISABLE BUTTON */
 
-  }
+    button.disabled = true;
 
+    button.textContent =
+      "Creating Account...";
 
-  document
-    .getElementById("registerForm")
-    .addEventListener(
-      "submit",
-      async function(event) {
 
-        event.preventDefault();
-
-
-        const username =
-          document
-            .getElementById("username")
-            .value
-            .trim();
-
-
-        const email =
-          document
-            .getElementById("email")
-            .value
-            .trim();
-
-
-        const password =
-          document
-            .getElementById("password")
-            .value;
-
-
-        const confirmPassword =
-          document
-            .getElementById("confirmPassword")
-            .value;
-
-
-        const terms =
-          document
-            .getElementById("terms")
-            .checked;
-
-
-        const button =
-          document
-            .getElementById("signupButton");
-
-
-        if (username.length < 3) {
-
-          showMessage(
-            "Username must be at least 3 characters.",
-            "error"
-          );
-
-          return;
-        }
-
-
-        if (password.length < 6) {
-
-          showMessage(
-            "Password must be at least 6 characters.",
-            "error"
-          );
-
-          return;
-        }
-
-
-        if (password !== confirmPassword) {
-
-          showMessage(
-            "Passwords do not match.",
-            "error"
-          );
-
-          return;
-        }
-
-
-        if (!terms) {
-
-          showMessage(
-            "Please accept the Terms of Service and Privacy Policy.",
-            "error"
-          );
-
-          return;
-        }
-
-
-        button.disabled = true;
-
-        button.textContent =
-          "CREATING ACCOUNT...";
-
-
-        try {
-
-          const response =
-            await fetch(
-              "/api/register",
-              {
-                method: "POST",
-
-                headers: {
-                  "Content-Type":
-                    "application/json"
-                },
-
-                credentials: "include",
-
-                body: JSON.stringify({
-                  username,
-                  email,
-                  password
-                })
-              }
-            );
-
-
-          const data =
-            await response.json();
-
-
-          if (
-            !response.ok ||
-            !data.success
-          ) {
-
-            showMessage(
-              data.message ||
-              "Registration failed.",
-              "error"
-            );
-
-            button.disabled = false;
-
-            button.textContent =
-              "SIGN UP";
-
-            return;
-          }
-
-
-          showMessage(
-            "Account created successfully. Redirecting...",
-            "success"
-          );
-
-
-          setTimeout(
-            function() {
-
-              window.location.href =
-                "/dashboard.html";
-
-            },
-            1000
-          );
-
-
-        } catch (error) {
-
-          console.error(error);
-
-          showMessage(
-            "Unable to connect to the server.",
-            "error"
-          );
-
-          button.disabled = false;
-
-          button.textContent =
-            "SIGN UP";
-
-        }
-
-      }
+    showMessage(
+      "",
+      ""
     );
 
 
-  function googleLogin() {
+    try {
 
-    window.location.href =
-      "/auth/google";
+      const response =
+        await fetch(
+          "/api/register",
+          {
+            method: "POST",
 
-  }
+            headers: {
+              "Content-Type":
+                "application/json",
+
+              "Accept":
+                "application/json"
+            },
+
+            credentials: "include",
+
+            body: JSON.stringify({
+
+              username: username,
+
+              email: email,
+
+              phone: phone,
+
+              password: password
+
+            })
+          }
+        );
 
 
-  function githubLogin() {
+      let data = {};
 
-    window.location.href =
-      "/auth/github";
+      try {
+        data = await response.json();
+      }
 
-  }
+      catch {
+        data = {};
+      }
+
+
+      /* FAILED */
+
+      if (!response.ok) {
+
+        showMessage(
+          data.message ||
+          data.error ||
+          "Registration failed. Please try again.",
+          "error"
+        );
+
+        button.disabled = false;
+
+        button.textContent =
+          "Create Account";
+
+        return;
+      }
+
+
+      /* SUCCESS */
+
+      showMessage(
+        data.message ||
+        "Account created successfully!",
+        "success"
+      );
+
+
+      /*
+       * If the backend logs the user in,
+       * go directly to dashboard.
+       */
+
+      setTimeout(function() {
+
+        window.location.href =
+          data.redirect ||
+          "/dashboard.html";
+
+      }, 800);
+
+    }
+
+    catch (error) {
+
+      console.error(
+        "Registration error:",
+        error
+      );
+
+
+      showMessage(
+        "Unable to connect to the server. Please try again.",
+        "error"
+      );
+
+
+      button.disabled = false;
+
+      button.textContent =
+        "Create Account";
+
+    }
+
+  });
 
 </script>
 
 </body>
-      </html>
+</html>
