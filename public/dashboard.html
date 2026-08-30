@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b1020">
+  <meta name="theme-color" content="#000000">
 
   <title>ADEZ TECH | Dashboard</title>
 
@@ -14,10 +14,14 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Inter, Arial, sans-serif;
-      background: #f5f7fb;
-      color: #182235;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000000;
+      color: #ffffff;
     }
 
     button,
@@ -26,35 +30,40 @@
       font-family: inherit;
     }
 
-    a {
-      text-decoration: none;
-    }
-
-    /* TOP NAV */
+    /* =========================
+       TOP BAR
+    ========================= */
 
     .topbar {
       height: 68px;
-      background: #111827;
-      color: white;
+      background: #000000;
+      border-bottom: 1px solid #1b1b1b;
+      color: #ffffff;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       padding: 0 25px;
+
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
+
       z-index: 1000;
     }
 
     .brand {
+      color: #ffffff;
+      text-decoration: none;
       font-size: 23px;
       font-weight: 900;
       letter-spacing: .5px;
     }
 
     .brand span {
-      color: #20d3ff;
+      color: #00d9ff;
     }
 
     .top-right {
@@ -64,78 +73,101 @@
     }
 
     .balance-mini {
-      background: #172235;
-      border: 1px solid #27354d;
+      background: #0b0b0b;
+      border: 1px solid #242424;
       padding: 9px 15px;
-      border-radius: 8px;
+      border-radius: 7px;
       font-size: 13px;
+      color: #aaa;
     }
 
     .balance-mini strong {
-      color: #20d3ff;
+      color: #00d9ff;
     }
 
     .user-menu {
       display: flex;
       align-items: center;
       gap: 9px;
-      cursor: pointer;
+      color: #ddd;
     }
 
     .avatar {
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: #20d3ff;
-      color: #07111c;
+
+      background: #00d9ff;
+      color: #000;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       font-weight: bold;
     }
 
-    /* SIDEBAR */
+    /* =========================
+       SIDEBAR
+    ========================= */
 
     .sidebar {
       position: fixed;
+
       top: 68px;
       left: 0;
       bottom: 0;
+
       width: 235px;
-      background: #111827;
-      color: #aeb9cc;
+
+      background: #000000;
+      border-right: 1px solid #1b1b1b;
+
       padding: 20px 13px;
+
       z-index: 900;
     }
 
     .menu-title {
       font-size: 10px;
       text-transform: uppercase;
-      color: #66738a;
-      margin: 14px 12px 8px;
+      color: #555;
+      margin: 16px 12px 8px;
       letter-spacing: 1px;
     }
 
     .menu-item {
       width: 100%;
+
       border: 0;
       background: transparent;
-      color: #aeb9cc;
+
+      color: #888;
+
       display: flex;
       align-items: center;
+
       gap: 12px;
+
       padding: 12px 13px;
-      border-radius: 8px;
+
+      border-radius: 7px;
+
       margin-bottom: 4px;
+
       cursor: pointer;
+
       text-align: left;
+
       font-size: 14px;
+
+      transition: .2s;
     }
 
     .menu-item:hover,
     .menu-item.active {
-      background: #1c293d;
-      color: #20d3ff;
+      background: #111111;
+      color: #00d9ff;
     }
 
     .menu-icon {
@@ -145,15 +177,26 @@
     }
 
     .logout-menu {
-      color: #ff7180;
+      color: #ff586b;
     }
 
-    /* MAIN */
+    .logout-menu:hover {
+      color: #ff586b;
+      background: #170a0c;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
 
     .main {
       margin-left: 235px;
+
       padding: 98px 28px 40px;
+
       min-height: 100vh;
+
+      background: #000000;
     }
 
     .page {
@@ -162,135 +205,197 @@
     }
 
     .page-heading {
-      margin-bottom: 24px;
+      margin-bottom: 25px;
     }
 
     .page-heading h1 {
-      font-size: 25px;
-      color: #172033;
+      font-size: 26px;
+      color: #ffffff;
     }
 
     .page-heading p {
-      color: #7b879a;
-      font-size: 14px;
-      margin-top: 5px;
+      color: #666;
+      font-size: 13px;
+      margin-top: 6px;
     }
 
-    /* STAT CARDS */
+    .page-heading strong {
+      color: #00d9ff;
+    }
+
+    /* =========================
+       STAT CARDS
+    ========================= */
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 15px;
+
       margin-bottom: 22px;
     }
 
     .stat {
-      background: white;
-      border: 1px solid #e6eaf0;
-      border-radius: 10px;
+      background: #090909;
+
+      border: 1px solid #1d1d1d;
+
+      border-radius: 9px;
+
       padding: 21px;
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
-      box-shadow: 0 3px 12px rgba(20,35,60,.035);
+
+      transition: .2s;
+    }
+
+    .stat:hover {
+      border-color: #333;
     }
 
     .stat-info p {
-      color: #7d899c;
-      font-size: 12px;
+      color: #666;
+
+      font-size: 10px;
+
       margin-bottom: 7px;
+
+      letter-spacing: .5px;
     }
 
     .stat-info h2 {
-      font-size: 23px;
-      color: #182235;
+      font-size: 22px;
+
+      color: #ffffff;
     }
 
     .stat-icon {
-      width: 45px;
-      height: 45px;
-      border-radius: 9px;
-      background: #e8faff;
+      width: 43px;
+      height: 43px;
+
+      border-radius: 8px;
+
+      background: #101010;
+
+      border: 1px solid #252525;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
-      font-size: 21px;
+
+      font-size: 19px;
     }
 
-    /* CONTENT GRID */
+    /* =========================
+       CONTENT
+    ========================= */
 
     .content-grid {
       display: grid;
-      grid-template-columns: 1.55fr 1fr;
-      gap: 20px;
+
+      grid-template-columns:
+        1.55fr 1fr;
+
+      gap: 18px;
+
       align-items: start;
     }
 
     .card {
-      background: white;
-      border: 1px solid #e6eaf0;
-      border-radius: 10px;
+      background: #090909;
+
+      border: 1px solid #1d1d1d;
+
+      border-radius: 9px;
+
       padding: 22px;
-      box-shadow: 0 3px 12px rgba(20,35,60,.035);
-      margin-bottom: 20px;
+
+      margin-bottom: 18px;
     }
 
     .card-header {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       margin-bottom: 20px;
     }
 
     .card-header h2 {
       font-size: 17px;
+      color: #ffffff;
     }
 
     .card-header span {
-      color: #8490a3;
-      font-size: 12px;
+      color: #555;
+      font-size: 11px;
     }
 
-    /* QUICK ACTIONS */
+    /* =========================
+       QUICK ACTIONS
+    ========================= */
 
     .quick-actions {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 10px;
     }
 
     .quick {
-      border: 1px solid #e4e8ef;
-      background: #fafbfc;
+      border: 1px solid #202020;
+
+      background: #050505;
+
       border-radius: 8px;
+
       padding: 17px;
+
       cursor: pointer;
+
       text-align: left;
+
+      color: white;
     }
 
     .quick:hover {
-      border-color: #20d3ff;
-      background: #f4fdff;
+      border-color: #00d9ff;
     }
 
     .quick-icon {
-      font-size: 22px;
+      font-size: 21px;
       margin-bottom: 9px;
     }
 
     .quick strong {
       display: block;
+
       font-size: 13px;
+
       margin-bottom: 4px;
     }
 
     .quick small {
-      color: #8994a6;
-      font-size: 11px;
+      color: #666;
+
+      font-size: 10px;
     }
 
-    /* ORDER FORM */
+    /* =========================
+       FORM
+    ========================= */
 
     .form-group {
       margin-bottom: 15px;
@@ -298,74 +403,118 @@
 
     .form-group label {
       display: block;
+
       font-size: 12px;
-      color: #5d6a7e;
+
+      color: #aaa;
+
       margin-bottom: 7px;
-      font-weight: 600;
     }
 
     .form-control {
       width: 100%;
-      border: 1px solid #dce2ea;
-      background: #fff;
+
+      border: 1px solid #292929;
+
+      background: #000000;
+
       padding: 12px;
+
       border-radius: 7px;
+
       outline: none;
-      color: #182235;
+
+      color: #ffffff;
+
       font-size: 13px;
     }
 
     .form-control:focus {
-      border-color: #20d3ff;
-      box-shadow: 0 0 0 3px rgba(32,211,255,.08);
+      border-color: #00d9ff;
+
+      box-shadow:
+        0 0 0 2px
+        rgba(0,217,255,.08);
     }
 
     .order-button {
       width: 100%;
+
       border: 0;
-      background: #20bfe8;
-      color: #06121a;
+
+      background: #00d9ff;
+
+      color: #001018;
+
       padding: 13px;
+
       border-radius: 7px;
+
       cursor: pointer;
+
       font-weight: 800;
+
       margin-top: 5px;
     }
 
     .order-button:hover {
-      background: #0ab0dc;
+      background: #54e6ff;
     }
 
-    /* BALANCE */
+    /* =========================
+       BALANCE
+    ========================= */
 
     .balance-card {
-      background: linear-gradient(135deg, #101a2c, #182b40);
+      background:
+        linear-gradient(
+          135deg,
+          #050505,
+          #111111
+        );
+
+      border: 1px solid #242424;
+
       color: white;
-      border-radius: 10px;
+
+      border-radius: 9px;
+
       padding: 23px;
-      margin-bottom: 20px;
+
+      margin-bottom: 18px;
     }
 
     .balance-card small {
-      color: #aab7ca;
+      color: #666;
     }
 
     .balance-card h2 {
       margin: 8px 0 20px;
+
       font-size: 30px;
+
+      color: #00d9ff;
     }
 
     .deposit-button {
       border: 0;
-      background: #20d3ff;
-      color: #06121a;
+
+      background: #00d9ff;
+
+      color: #001018;
+
       padding: 10px 17px;
+
       border-radius: 7px;
+
       font-weight: bold;
+
       cursor: pointer;
     }
 
-    /* ORDERS */
+    /* =========================
+       TABLE
+    ========================= */
 
     .table-wrap {
       overflow-x: auto;
@@ -373,68 +522,101 @@
 
     table {
       width: 100%;
+
       border-collapse: collapse;
-      min-width: 650px;
+
+      min-width: 600px;
     }
 
     th {
       text-align: left;
-      font-size: 11px;
-      color: #8793a5;
+
+      font-size: 10px;
+
+      color: #555;
+
       font-weight: 600;
+
       padding: 11px;
-      border-bottom: 1px solid #e8ecf1;
+
+      border-bottom: 1px solid #1d1d1d;
     }
 
     td {
       padding: 13px 11px;
+
       font-size: 12px;
-      border-bottom: 1px solid #edf0f4;
+
+      color: #bbb;
+
+      border-bottom: 1px solid #151515;
     }
 
     .status {
       padding: 5px 8px;
+
       border-radius: 20px;
+
       font-size: 10px;
-      background: #fff4d8;
-      color: #9a7000;
+
+      background: #181407;
+
+      color: #e5b93d;
     }
 
     .empty {
       text-align: center;
+
       padding: 30px;
-      color: #8994a6;
-      font-size: 13px;
+
+      color: #555;
+
+      font-size: 12px;
     }
 
-    /* PROFILE */
+    /* =========================
+       PROFILE
+    ========================= */
 
     .profile-row {
       display: flex;
+
       justify-content: space-between;
+
       padding: 13px 0;
-      border-bottom: 1px solid #edf0f4;
+
+      border-bottom: 1px solid #181818;
+
       font-size: 13px;
     }
 
     .profile-row span {
-      color: #8490a3;
+      color: #555;
     }
 
-    /* MOBILE */
+    .profile-row strong {
+      color: #ddd;
+
+      max-width: 60%;
+
+      overflow-wrap: anywhere;
+
+      text-align: right;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
 
     .mobile-bottom {
-      display: none;
-    }
-
-    .mobile-toggle {
       display: none;
     }
 
     @media (max-width: 1100px) {
 
       .stats {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
       .content-grid {
@@ -446,10 +628,14 @@
     @media (max-width: 700px) {
 
       .topbar {
-        padding: 0 15px;
+        padding: 0 14px;
       }
 
       .balance-mini {
+        display: none;
+      }
+
+      .user-menu span {
         display: none;
       }
 
@@ -459,12 +645,16 @@
 
       .main {
         margin-left: 0;
-        padding: 88px 14px 85px;
+
+        padding:
+          88px 13px 82px;
       }
 
       .stats {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        grid-template-columns:
+          1fr 1fr;
+
+        gap: 9px;
       }
 
       .stat {
@@ -472,13 +662,13 @@
       }
 
       .stat-info h2 {
-        font-size: 18px;
+        font-size: 17px;
       }
 
       .stat-icon {
-        width: 36px;
-        height: 36px;
-        font-size: 17px;
+        width: 35px;
+        height: 35px;
+        font-size: 15px;
       }
 
       .quick-actions {
@@ -487,37 +677,52 @@
 
       .mobile-bottom {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+
+        grid-template-columns:
+          repeat(4, 1fr);
+
         position: fixed;
+
         bottom: 0;
+
         left: 0;
         right: 0;
-        height: 65px;
-        background: #111827;
+
+        height: 64px;
+
+        background: #000000;
+
+        border-top: 1px solid #222;
+
         z-index: 1200;
-        border-top: 1px solid #26344b;
       }
 
       .mobile-bottom button {
         background: transparent;
+
         border: 0;
-        color: #8490a3;
+
+        color: #666;
+
         font-size: 10px;
+
         cursor: pointer;
       }
 
       .mobile-bottom button span {
         display: block;
+
         font-size: 18px;
+
         margin-bottom: 3px;
       }
 
       .mobile-bottom button.active {
-        color: #20d3ff;
+        color: #00d9ff;
       }
 
-      .page-heading h1 {
-        font-size: 21px;
+      .card {
+        padding: 18px;
       }
 
     }
@@ -526,7 +731,9 @@
 
 <body>
 
-<!-- TOP BAR -->
+<!-- =========================
+     TOP BAR
+========================= -->
 
 <header class="topbar">
 
@@ -537,16 +744,25 @@
   <div class="top-right">
 
     <div class="balance-mini">
+
       Balance:
-      <strong id="topBalance">KSh 0.00</strong>
+
+      <strong id="topBalance">
+        KSh 0.00
+      </strong>
+
     </div>
 
     <div class="user-menu">
-      <div class="avatar" id="avatar">U</div>
+
+      <div class="avatar" id="avatar">
+        U
+      </div>
 
       <span id="topUserName">
         User
       </span>
+
     </div>
 
   </div>
@@ -554,83 +770,132 @@
 </header>
 
 
-<!-- SIDEBAR -->
+<!-- =========================
+     SIDEBAR
+========================= -->
 
 <aside class="sidebar">
 
   <div class="menu-title">
-    MAIN
+    Main
   </div>
 
   <button
     class="menu-item active"
     onclick="goTo('dashboard')">
-    <span class="menu-icon">▦</span>
+
+    <span class="menu-icon">
+      ▦
+    </span>
+
     Dashboard
+
   </button>
+
 
   <button
     class="menu-item"
     onclick="goTo('newOrder')">
-    <span class="menu-icon">＋</span>
+
+    <span class="menu-icon">
+      ＋
+    </span>
+
     New Order
+
   </button>
+
 
   <button
     class="menu-item"
     onclick="goTo('orders')">
-    <span class="menu-icon">▤</span>
+
+    <span class="menu-icon">
+      ▤
+    </span>
+
     Orders
+
   </button>
 
 
   <div class="menu-title">
-    ACCOUNT
+    Account
   </div>
+
 
   <button
     class="menu-item"
     onclick="goTo('addFunds')">
-    <span class="menu-icon">＋</span>
+
+    <span class="menu-icon">
+      ＋
+    </span>
+
     Add Funds
+
   </button>
+
 
   <button
     class="menu-item"
     onclick="goTo('profile')">
-    <span class="menu-icon">♙</span>
+
+    <span class="menu-icon">
+      ♙
+    </span>
+
     Profile
+
   </button>
 
 
   <div class="menu-title">
-    SUPPORT
+    Support
   </div>
+
 
   <button
     class="menu-item"
     onclick="contactSupport()">
-    <span class="menu-icon">?</span>
+
+    <span class="menu-icon">
+      ?
+    </span>
+
     Support
+
   </button>
+
 
   <button
     class="menu-item logout-menu"
     onclick="logout()">
-    <span class="menu-icon">↪</span>
+
+    <span class="menu-icon">
+      ↪
+    </span>
+
     Logout
+
   </button>
 
 </aside>
 
 
-<!-- MAIN -->
+<!-- =========================
+     MAIN
+========================= -->
 
 <main class="main">
 
   <div class="page">
 
-    <div class="page-heading">
+
+    <div
+      class="page-heading"
+      id="dashboard">
+
       <h1>
         Dashboard
       </h1>
@@ -640,22 +905,29 @@
         <strong id="welcomeName">
           User
         </strong>.
-        Manage your ADEZ TECH services here.
+        Manage your ADEZ TECH account.
       </p>
+
     </div>
 
 
-    <!-- STATS -->
+    <!-- STATISTICS -->
 
     <div class="stats">
+
 
       <div class="stat">
 
         <div class="stat-info">
-          <p>ACCOUNT BALANCE</p>
+
+          <p>
+            ACCOUNT BALANCE
+          </p>
+
           <h2 id="balance">
             KSh 0.00
           </h2>
+
         </div>
 
         <div class="stat-icon">
@@ -668,10 +940,15 @@
       <div class="stat">
 
         <div class="stat-info">
-          <p>TOTAL ORDERS</p>
+
+          <p>
+            TOTAL ORDERS
+          </p>
+
           <h2 id="totalOrders">
             0
           </h2>
+
         </div>
 
         <div class="stat-icon">
@@ -684,10 +961,15 @@
       <div class="stat">
 
         <div class="stat-info">
-          <p>ACTIVE ORDERS</p>
+
+          <p>
+            ACTIVE ORDERS
+          </p>
+
           <h2 id="activeOrders">
             0
           </h2>
+
         </div>
 
         <div class="stat-icon">
@@ -700,10 +982,15 @@
       <div class="stat">
 
         <div class="stat-info">
-          <p>COMPLETED</p>
+
+          <p>
+            COMPLETED
+          </p>
+
           <h2 id="completedOrders">
             0
           </h2>
+
         </div>
 
         <div class="stat-icon">
@@ -715,7 +1002,7 @@
     </div>
 
 
-    <!-- TWO COLUMNS -->
+    <!-- CONTENT -->
 
     <div class="content-grid">
 
@@ -724,22 +1011,26 @@
 
       <div>
 
+
         <!-- QUICK ACTIONS -->
 
         <div class="card">
 
           <div class="card-header">
+
             <h2>
               Quick Actions
             </h2>
 
             <span>
-              Get started
+              ADEZ TECH
             </span>
+
           </div>
 
 
           <div class="quick-actions">
+
 
             <button
               class="quick"
@@ -792,10 +1083,11 @@
               </strong>
 
               <small>
-                Get help from ADEZ TECH
+                Contact ADEZ TECH
               </small>
 
             </button>
+
 
           </div>
 
@@ -815,13 +1107,14 @@
             </h2>
 
             <span>
-              Place an order
+              Place order
             </span>
 
           </div>
 
 
           <form id="orderForm">
+
 
             <div class="form-group">
 
@@ -869,7 +1162,7 @@
                 id="serviceLink"
                 class="form-control"
                 type="text"
-                placeholder="Enter your link or target"
+                placeholder="Enter link or target"
                 required>
 
             </div>
@@ -931,10 +1224,23 @@
               <thead>
 
                 <tr>
-                  <th>ID</th>
-                  <th>SERVICE</th>
-                  <th>QUANTITY</th>
-                  <th>STATUS</th>
+
+                  <th>
+                    ID
+                  </th>
+
+                  <th>
+                    SERVICE
+                  </th>
+
+                  <th>
+                    QUANTITY
+                  </th>
+
+                  <th>
+                    STATUS
+                  </th>
+
                 </tr>
 
               </thead>
@@ -1006,37 +1312,60 @@
 
 
           <div class="profile-row">
-            <span>Name</span>
+
+            <span>
+              Name
+            </span>
+
             <strong id="profileName">
               -
             </strong>
+
           </div>
 
+
           <div class="profile-row">
-            <span>Email</span>
+
+            <span>
+              Email
+            </span>
+
             <strong id="profileEmail">
               -
             </strong>
+
           </div>
 
+
           <div class="profile-row">
-            <span>Phone</span>
+
+            <span>
+              Phone
+            </span>
+
             <strong id="profilePhone">
               -
             </strong>
+
           </div>
 
+
           <div class="profile-row">
-            <span>Status</span>
+
+            <span>
+              Status
+            </span>
+
             <strong>
               Active
             </strong>
+
           </div>
 
         </div>
 
 
-        <!-- INFO -->
+        <!-- INFORMATION -->
 
         <div class="card">
 
@@ -1049,181 +1378,10 @@
           </div>
 
           <p style="
-            color:#7d899c;
+            color:#555;
             font-size:13px;
             line-height:1.7;
           ">
 
-            Welcome to your ADEZ TECH service
-            panel. Select a service, create an
-            order and manage your account from
-            one place.
-
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</main>
-
-
-<!-- MOBILE NAV -->
-
-<nav class="mobile-bottom">
-
-  <button
-    class="active"
-    onclick="window.scrollTo({top:0,behavior:'smooth'})">
-
-    <span>▦</span>
-    Home
-
-  </button>
-
-  <button
-    onclick="goTo('newOrder')">
-
-    <span>＋</span>
-    Order
-
-  </button>
-
-  <button
-    onclick="goTo('orders')">
-
-    <span>▤</span>
-    Orders
-
-  </button>
-
-  <button
-    onclick="goTo('profile')">
-
-    <span>♙</span>
-    Profile
-
-  </button>
-
-</nav>
-
-
-<script>
-
-  /* USER */
-
-  const user =
-    JSON.parse(
-      localStorage.getItem("adezUser") || "null"
-    );
-
-
-  if (!user) {
-
-    window.location.href =
-      "login.html";
-
-  }
-
-
-  if (user) {
-
-    const name =
-      user.name || "User";
-
-    const email =
-      user.email || "-";
-
-    const phone =
-      user.phone || "-";
-
-
-    document.getElementById(
-      "topUserName"
-    ).textContent = name;
-
-
-    document.getElementById(
-      "welcomeName"
-    ).textContent = name;
-
-
-    document.getElementById(
-      "profileName"
-    ).textContent = name;
-
-
-    document.getElementById(
-      "profileEmail"
-    ).textContent = email;
-
-
-    document.getElementById(
-      "profilePhone"
-    ).textContent = phone;
-
-
-    document.getElementById(
-      "avatar"
-    ).textContent =
-      name.charAt(0).toUpperCase();
-
-  }
-
-
-  /* BALANCE */
-
-  function updateBalance() {
-
-    const balance =
-      Number(
-        localStorage.getItem(
-          "adezBalance"
-        ) || 0
-      );
-
-
-    const formatted =
-      "KSh " +
-      balance.toLocaleString(
-        "en-KE",
-        {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        }
-      );
-
-
-    document.getElementById(
-      "balance"
-    ).textContent = formatted;
-
-
-    document.getElementById(
-      "bigBalance"
-    ).textContent = formatted;
-
-
-    document.getElementById(
-      "topBalance"
-    ).textContent = formatted;
-
-  }
-
-
-  /* ORDERS */
-
-  function loadOrders() {
-
-    const orders =
-      JSON.parse(
-        localStorage.getItem(
-          "adezOrders"
-        ) || "[]"
-      );
-
-  
+            Your ADEZ TECH service panel.
+            Create orders, manage yo  
