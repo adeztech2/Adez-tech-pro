@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ADEZ TECH PRO</title>
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="brand">
+      <div class="brand-logo">A</div>
+
+      <div>
+        <h2>ADEZ TECH</h2>
+        <span>PRO PANEL</span>
+      </div>
+    </div>
+
+    <nav>
+
+      <a href="/dashboard.html" class="nav-link active">
+        <span>▣</span>
+        Dashboard
+      </a>
+
+      <a href="/deploy.html" class="nav-link">
+        <span>🤖</span>
+        Deploy Bot
+      </a>
+
+      <a href="/bots.html" class="nav-link">
+        <span>📱</span>
+        My Bots
+      </a>
+
+      <a href="/boosting.html" class="nav-link">
+        <span>🚀</span>
+        Social Media Boosting
+      </a>
+
+      <a href="/wallet.html" class="nav-link">
+        <span>💰</span>
+        Wallet
+      </a>
+
+      <a href="/orders.html" class="nav-link">
+        <span>📦</span>
+        Orders
+      </a>
+
+      <a href="/referrals.html" class="nav-link">
+        <span>👥</span>
+        Earn Money
+      </a>
+
+      <a href="/documentation.html" class="nav-link">
+        <span>📚</span>
+        API Documentation
+      </a>
+
+      <a href="/payment.html" class="nav-link">
+        <span>💳</span>
+        Payment
+      </a>
+
+      <a href="/settings.html" class="nav-link">
+        <span>⚙️</span>
+        Settings
+      </a>
+
+    </nav>
+
+    <button class="logout" onclick="logout()">
+      🚪 Logout
+    </button>
+
+  </aside>
+
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+      <button class="menu-button" onclick="toggleSidebar()">
+        ☰
+      </button>
+
+      <div>
+        <h1>Dashboard</h1>
+        <p>Welcome back to ADEZ TECH PRO</p>
+      </div>
+
+      <div class="profile">
+        <div class="avatar" id="avatar">A</div>
+
+        <div>
+          <strong id="username">Loading...</strong>
+          <small id="email"></small>
+        </div>
+      </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+      <!-- STATISTICS -->
+
+      <div class="stats">
+
+        <div class="stat-card">
+          <div class="stat-icon">💰</div>
+
+          <div>
+            <span>Wallet Balance</span>
+            <h2>KES <span id="balance">0.00</span></h2>
+          </div>
+        </div>
+
+
+        <div class="stat-card">
+          <div class="stat-icon">🤖</div>
+
+          <div>
+            <span>Total Bots</span>
+            <h2 id="totalBots">0</h2>
+          </div>
+        </div>
+
+
+        <div class="stat-card">
+          <div class="stat-icon">🟢</div>
+
+          <div>
+            <span>Active Bots</span>
+            <h2 id="activeBots">0</h2>
+          </div>
+        </div>
+
+
+        <div class="stat-card">
+          <div class="stat-icon">📦</div>
+
+          <div>
+            <span>Total Orders</span>
+            <h2 id="orders">0</h2>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- QUICK ACTIONS -->
+
+      <div class="section-title">
+
+        <div>
+          <h2>Quick Actions</h2>
+          <p>Manage your ADEZ TECH services</p>
+        </div>
+
+      </div>
+
+
+      <div class="actions">
+
+        <a href="/deploy.html" class="action-card">
+
+          <div class="action-icon">🤖</div>
+
+          <div>
+            <h3>Deploy Bot</h3>
+            <p>Create and deploy a WhatsApp bot</p>
+          </div>
+
+          <span class="arrow">→</span>
+
+        </a>
+
+
+        <a href="/bots.html" class="action-card">
+
+          <div class="action-icon">📱</div>
+
+          <div>
+            <h3>My Bots</h3>
+            <p>Manage your deployed bots</p>
+          </div>
+
+          <span class="arrow">→</span>
+
+        </a>
+
+
+        <a href="/boosting.html" class="action-card">
+
+          <div class="action-icon">🚀</div>
+
+          <div>
+            <h3>Social Media Boosting</h3>
+            <p>Manage your social media orders</p>
+          </div>
+
+          <span class="arrow">→</span>
+
+        </a>
+
+
+        <a href="/payment.html" class="action-card">
+
+          <div class="action-icon">💳</div>
+
+          <div>
+            <h3>Add Funds</h3>
+            <p>Fund your ADEZ TECH wallet</p>
+          </div>
+
+          <span class="arrow">→</span>
+
+        </a>
+
+      </div>
+
+
+      <!-- REFERRAL -->
+
+      <div class="referral-card">
+
+        <div>
+
+          <span class="badge">REFER & EARN</span>
+
+          <h2>Earn money with ADEZ TECH</h2>
+
+          <p>
+            Invite friends and earn referral commissions
+            when they use the platform.
+          </p>
+
+          <a href="/referrals.html" class="primary-button">
+            View Referral Program
+          </a>
+
+        </div>
+
+        <div class="referral-icon">
+          👥
+        </div>
+
+      </div>
+
+
+      <!-- SYSTEM STATUS -->
+
+      <div class="section-title">
+
+        <div>
+          <h2>System Status</h2>
+          <p>Current ADEZ TECH services</p>
+        </div>
+
+      </div>
+
+
+      <div class="status-card">
+
+        <div class="status-item">
+
+          <div class="status-dot online"></div>
+
+          <div>
+            <strong>Dashboard</strong>
+            <span>Operational</span>
+          </div>
+
+        </div>
+
+
+        <div class="status-item">
+
+          <div class="status-dot online"></div>
+
+          <div>
+            <strong>Bot Services</strong>
+            <span>Operational</span>
+          </div>
+
+        </div>
+
+
+        <div class="status-item">
+
+          <div class="status-dot online"></div>
+
+          <div>
+            <strong>Payments</strong>
+            <span>Operational</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<script src="/js/dashboard.js"></script>
+
+</body>
+          </html>
