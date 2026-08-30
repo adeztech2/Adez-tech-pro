@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Payment | ADEZ TECH PRO</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #101828;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: flex;
+    }
+
+
+    /* SIDEBAR */
+
+    .sidebar {
+      width: 250px;
+      background: #101828;
+      color: white;
+      padding: 22px 15px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 20;
+      transition: .25s;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 5px 10px 30px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #06b6d4
+        );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .brand h2 {
+      font-size: 16px;
+    }
+
+    .brand span {
+      display: block;
+      color: #98a2b3;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      margin-top: 2px;
+    }
+
+    nav {
+      display: grid;
+      gap: 5px;
+    }
+
+    .nav-link {
+      color: #b7c2d0;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: #1d2939;
+      color: white;
+    }
+
+    .logout {
+      position: absolute;
+      bottom: 22px;
+      left: 15px;
+      right: 15px;
+      height: 42px;
+      border: 1px solid #344054;
+      background: transparent;
+      color: #d0d5dd;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+
+    /* MAIN */
+
+    .main {
+      width: 100%;
+      margin-left: 250px;
+    }
+
+    .topbar {
+      height: 78px;
+      background: white;
+      border-bottom: 1px solid #eaecf0;
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
+      gap: 15px;
+    }
+
+    .topbar h1 {
+      font-size: 20px;
+    }
+
+    .topbar p {
+      color: #667085;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .menu-button {
+      display: none;
+      border: none;
+      background: transparent;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .content {
+      padding: 30px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+
+    /* BALANCE */
+
+    .balance-card {
+      background:
+        linear-gradient(
+          135deg,
+          #111827,
+          #172554
+        );
+
+      color: white;
+      border-radius: 18px;
+      padding: 27px;
+      margin-bottom: 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .balance-card small {
+      color: #98a2b3;
+      font-size: 12px;
+    }
+
+    .balance {
+      font-size: 32px;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .topup-btn {
+      background: #2563eb;
+      color: white;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+
+    /* GRID */
+
+    .payment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #eaecf0;
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 7px;
+    }
+
+    .description {
+      color: #667085;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+
+    /* METHODS */
+
+    .methods {
+      display: grid;
+      gap: 11px;
+    }
+
+    .method {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      border: 1px solid #eaecf0;
+      border-radius: 11px;
+      padding: 14px;
+    }
+
+    .method-icon {
+      width: 43px;
+      height: 43px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+    }
+
+    .mpesa {
+      background: #16a34a;
+    }
+
+    .card-icon {
+      background: #2563eb;
+    }
+
+    .method strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .method span {
+      display: block;
+      color: #667085;
+      font-size: 10px;
+      margin-top: 3px;
+    }
+
+    .method-status {
+      margin-left: auto;
+      font-size: 9px;
+      color: #027a48;
+      background: #ecfdf3;
+      padding: 5px 7px;
+      border-radius: 20px;
+    }
+
+
+    /* PAYMENT HISTORY */
+
+    .history {
+      margin-top: 20px;
+    }
+
+    .history-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .history-header h2 {
+      font-size: 18px;
+    }
+
+    .refresh {
+      border: 1px solid #d0d5dd;
+      background: white;
+      padding: 8px 11px;
+      border-radius: 7px;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    .transactions {
+      display: grid;
+      gap: 8px;
+    }
+
+    .transaction {
+      display: grid;
+      grid-template-columns: 45px 1fr auto auto;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid #eaecf0;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .transaction-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: #ecfdf3;
+      color: #027a48;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .transaction strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .transaction small {
+      color: #98a2b3;
+      font-size: 9px;
+    }
+
+    .transaction-amount {
+      color: #027a48;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .status {
+      padding: 5px 8px;
+      border-radius: 20px;
+      background: #ecfdf3;
+      color: #027a48;
+      font-size: 9px;
+    }
+
+    .empty {
+      text-align: center;
+      color: #98a2b3;
+      padding: 30px;
+      font-size: 12px;
+    }
+
+
+    /* INFO */
+
+    .info {
+      margin-top: 20px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      border-radius: 12px;
+      padding: 17px;
+      color: #1e40af;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+
+    /* MOBILE */
+
+    @media(max-width: 800px) {
+
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .main {
+        margin-left: 0;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .topbar {
+        padding: 0 18px;
+      }
+
+      .content {
+        padding: 18px;
+      }
+
+      .payment-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .balance-card {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .transaction {
+        grid-template-columns: 40px 1fr;
+      }
+
+      .transaction-amount,
+      .status {
+        grid-column: 2;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+  <!-- SIDEBAR -->
+
+  <aside
+    class="sidebar"
+    id="sidebar"
+  >
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        A
+      </div>
+
+      <div>
+
+        <h2>
+          ADEZ TECH
+        </h2>
+
+        <span>
+          PRO PANEL
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <nav>
+
+      <a
+        href="/dashboard.html"
+        class="nav-link"
+      >
+        ▣ Dashboard
+      </a>
+
+      <a
+        href="/deploy.html"
+        class="nav-link"
+      >
+        🤖 Deploy Bot
+      </a>
+
+      <a
+        href="/bots.html"
+        class="nav-link"
+      >
+        📱 My Bots
+      </a>
+
+      <a
+        href="/boosting.html"
+        class="nav-link"
+      >
+        🚀 Social Media Boosting
+      </a>
+
+      <a
+        href="/topup.html"
+        class="nav-link"
+      >
+        💰 Top Up
+      </a>
+
+      <a
+        href="/orders.html"
+        class="nav-link"
+      >
+        📦 Orders
+      </a>
+
+      <a
+        href="/referrals.html"
+        class="nav-link"
+      >
+        👥 Earn Money
+      </a>
+
+      <a
+        href="/documentation.html"
+        class="nav-link"
+      >
+        📚 API Documentation
+      </a>
+
+      <a
+        href="/payment.html"
+        class="nav-link active"
+      >
+        💳 Payment
+      </a>
+
+      <a
+        href="/settings.html"
+        class="nav-link"
+      >
+        ⚙️ Settings
+      </a>
+
+    </nav>
+
+
+    <button
+      class="logout"
+      onclick="logout()"
+    >
+      🚪 Logout
+    </button>
+
+  </aside>
+
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+
+    <header class="topbar">
+
+      <button
+        class="menu-button"
+        onclick="toggleSidebar()"
+      >
+        ☰
+      </button>
+
+      <div>
+
+        <h1>
+          Payments
+        </h1>
+
+        <p>
+          Manage your wallet and payments
+        </p>
+
+      </div>
+
+    </header>
+
+
+    <section class="content">
+
+
+      <!-- BALANCE -->
+
+      <div class="balance-card">
+
+        <div>
+
+          <small>
+            Available Wallet Balance
+          </small>
+
+          <div class="balance">
+
+            KES
+            <span id="balance">
+              0.00
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <a
+          href="/topup.html"
+          class="topup-btn"
+        >
+          + Top Up Wallet
+        </a>
+
+      </div>
+
+
+      <!-- PAYMENT METHODS -->
+
+      <div class="payment-grid">
+
+
+        <div class="card">
+
+          <h2>
+            Payment Methods
+          </h2>
+
+          <p class="description">
+            Select an available payment method
+            to fund your ADEZ TECH wallet.
+          </p>
+
+
+          <div class="methods">
+
+
+            <div class="method">
+
+              <div class="method-icon mpesa">
+                M
+              </div>
+
+              <div>
+
+                <strong>
+                  M-Pesa
+                </strong>
+
+                <span>
+                  Mobile money payment
+                </span>
+
+              </div>
+
+              <div class="method-status">
+                Available
+              </div>
+
+            </div>
+
+
+            <div class="method">
+
+              <div class="method-icon card-icon">
+                💳
+              </div>
+
+              <div>
+
+                <strong>
+                  Card Payment
+                </strong>
+
+                <span>
+                  Visa / Mastercard
+                </span>
+
+              </div>
+
+              <div class="method-status">
+                Available
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+        <!-- PAYMENT INFO -->
+
+        <div class="card">
+
+          <h2>
+            Payment Information
+          </h2>
+
+          <p class="description">
+            Payments are processed through the
+            configured payment provider.
+          </p>
+
+
+          <div class="methods">
+
+
+            <div class="method">
+
+              <div class="method-icon">
+                🔒
+              </div>
+
+              <div>
+
+                <strong>
+                  Secure Payments
+                </strong>
+
+                <span>
+                  Payment details are handled
+                  securely.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="method">
+
+              <div class="method-icon">
+                ⚡
+              </div>
+
+              <div>
+
+                <strong>
+                  Fast Processing
+                </strong>
+
+                <span>
+                  Confirmed payments update your
+                  wallet automatically.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="method">
+
+              <div class="method-icon">
+                ✓
+              </div>
+
+              <div>
+
+                <strong>
+                  Payment Verification
+                </strong>
+
+                <span>
+                  Transactions are verified before
+                  wallet credit.
+                </span>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- HISTORY -->
+
+      <div class="card history">
+
+        <div class="history-header">
+
+          <h2>
+            Recent Transactions
+          </h2>
+
+          <button
+            class="refresh"
+            onclick="loadPayments()"
+          >
+            ↻ Refresh
+          </button>
+
+        </div>
+
+
+        <div
+          class="transactions"
+          id="transactions"
+        >
+
+          <div class="empty">
+            Loading transactions...
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="info">
+
+        <strong>
+          Payment security:
+        </strong>
+
+        Never share your M-Pesa PIN, card PIN,
+        OTP or password with anyone. ADEZ TECH
+        will never request these details from you.
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<script>
+
+
+function toggleSidebar() {
+
+  document
+    .getElementById("sidebar")
+    .classList.toggle("open");
+
+}
+
+
+async function logout() {
+
+  try {
+
+    await fetch(
+      "/api/logout",
+      {
+        method: "POST"
+      }
+    );
+
+  } finally {
+
+    window.location.href =
+      "/login.html";
+
+  }
+
+}
+
+
+/* LOAD BALANCE */
+
+async function loadBalance() {
+
+  try {
+
+    const response =
+      await fetch(
+        "/api/wallet",
+        {
+          credentials: "include"
+        }
+      );
+
+
+    if (response.status === 401) {
+
+      window.location.href =
+        "/login.html";
+
+      return;
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    document.getElementById(
+      "balance"
+    ).textContent =
+      Number(
+        data.balance || 0
+      ).toFixed(2);
+
+
+  } catch (error) {
+
+    console.error(error);
+
+  }
+
+}
+
+
+/* LOAD PAYMENTS */
+
+async function loadPayments() {
+
+  const container =
+    document.getElementById(
+      "transactions"
+    );
+
+
+  container.innerHTML =
+    `<div class="empty">
+      Loading transactions...
+    </div>`;
+
+
+  try {
+
+    const response =
+      await fetch(
+        "/api/payments",
+        {
+          credentials: "include"
+        }
+      );
+
+
+    if (response.status === 401) {
+
+      window.location.href =
+        "/login.html";
+
+      return;
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    const payments =
+      data.payments || [];
+
+
+    if (!payments.length) {
+
+      container.innerHTML =
+        `<div class="empty">
+          No payment transactions yet.
+        </div>`;
+
+      return;
+
+    }
+
+
+    container.innerHTML =
+      payments
+        .slice(0,10)
+        .map(payment => `
+
+          <div class="transaction">
+
+            <div class="transaction-icon">
+              ✓
+            </div>
+
+            <div>
+
+              <strong>
+                ${escapeHTML(
+                  payment.method ||
+                  "Payment"
+                )}
+              </strong>
+
+              <small>
+                ${escapeHTML(
+                  payment.reference ||
+                  payment.id ||
+                  "Transaction"
+                )}
+              </small>
+
+            </div>
+
+            <div class="transaction-amount">
+              + KES
+              ${Number(
+                payment.amount || 0
+              ).toFixed(2)}
+            </div>
+
+            <div class="status">
+              ${escapeHTML(
+                payment.status ||
+                "Completed"
+              )}
+            </div>
+
+          </div>
+
+        `)
+        .join("");
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    container.innerHTML =
+      `<div class="empty">
+        Unable to load payment history.
+      </div>`;
+
+  }
+
+}
+
+
+/* ESCAPE USER DATA */
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+loadBalance();
+
+loadPayments();
+
+</script>
+
+
+</body>
+
+  </html>
