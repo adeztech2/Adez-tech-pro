@@ -1,0 +1,16 @@
+{
+  "name": "adez-tech-pro",
+  "version": "1.0.0",
+  "description": "ADEZ TECH PRO Dashboard",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
