@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+
+  <title>ADEZ TECH | Social Media Marketing</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* =====================
+       NAVBAR
+    ===================== */
+
+    .navbar {
+      height: 70px;
+      background: rgba(0,0,0,.96);
+      border-bottom: 1px solid #1d1d1d;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 7%;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      z-index: 1000;
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: .5px;
+    }
+
+    .logo span {
+      color: #00d9ff;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: #888;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .nav-links a:hover {
+      color: #00d9ff;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 9px;
+    }
+
+    .btn {
+      border-radius: 7px;
+      padding: 10px 17px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .login-btn {
+      color: #fff;
+      border: 1px solid #333;
+      background: #080808;
+    }
+
+    .signup-btn {
+      background: #00d9ff;
+      color: #001018;
+      border: 1px solid #00d9ff;
+    }
+
+    /* =====================
+       HERO
+    ===================== */
+
+    .hero {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 120px 20px 70px;
+
+      position: relative;
+
+      background:
+        radial-gradient(
+          circle at center,
+          #101010 0,
+          #050505 35%,
+          #000 70%
+        );
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .badge {
+      display: inline-block;
+
+      padding: 7px 13px;
+
+      border: 1px solid #252525;
+
+      background: #090909;
+
+      color: #00d9ff;
+
+      border-radius: 30px;
+
+      font-size: 11px;
+
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 7vw, 76px);
+      line-height: 1.02;
+      font-weight: 900;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #00d9ff;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+
+      color: #777;
+
+      font-size: 15px;
+
+      line-height: 1.8;
+
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .primary {
+      background: #00d9ff;
+      color: #001018;
+      padding: 14px 25px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .secondary {
+      background: #090909;
+      color: #fff;
+      border: 1px solid #2b2b2b;
+      padding: 14px 25px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .secondary:hover {
+      border-color: #00d9ff;
+      color: #00d9ff;
+    }
+
+    /* =====================
+       STATS
+    ===================== */
+
+    .stats {
+      max-width: 1000px;
+      margin: -30px auto 0;
+
+      position: relative;
+      z-index: 10;
+
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      border: 1px solid #1d1d1d;
+
+      background: #080808;
+
+      border-radius: 10px;
+
+      overflow: hidden;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 25px 10px;
+
+      border-right: 1px solid #1d1d1d;
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat h2 {
+      color: #00d9ff;
+      font-size: 23px;
+      margin-bottom: 5px;
+    }
+
+    .stat p {
+      color: #555;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+
+    /* =====================
+       SERVICES
+    ===================== */
+
+    .section {
+      padding: 100px 7%;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 45px;
+    }
+
+    .section-heading small {
+      color: #00d9ff;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .section-heading h2 {
+      font-size: 32px;
+      margin: 12px 0;
+    }
+
+    .section-heading p {
+      color: #666;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .services {
+      max-width: 1100px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .service {
+      background: #080808;
+      border: 1px solid #1e1e1e;
+      border-radius: 9px;
+      padding: 25px;
+
+      transition: .25s;
+    }
+
+    .service:hover {
+      transform: translateY(-4px);
+      border-color: #00d9ff;
+    }
+
+    .service-icon {
+      width: 45px;
+      height: 45px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #101010;
+      border: 1px solid #252525;
+
+      border-radius: 8px;
+
+      font-size: 20px;
+
+      margin-bottom: 18px;
+    }
+
+    .service h3 {
+      font-size: 16px;
+      margin-bottom: 9px;
+    }
+
+    .service p {
+      color: #666;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* =====================
+       HOW IT WORKS
+    ===================== */
+
+    .steps {
+      max-width: 950px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .step {
+      background: #080808;
+      border: 1px solid #1e1e1e;
+      border-radius: 9px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+
+      margin: 0 auto 15px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: #00d9ff;
+      color: #001018;
+
+      font-weight: 900;
+    }
+
+    .step h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: #666;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* =====================
+       CTA
+    ===================== */
+
+    .cta {
+      padding: 90px 20px;
+
+      text-align: center;
+
+      border-top: 1px solid #161616;
+
+      background:
+        radial-gradient(
+          circle at center,
+          #0d1619,
+          #000 65%
+        );
+    }
+
+    .cta h2 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    /* =====================
+       FOOTER
+    ===================== */
+
+    footer {
+      border-top: 1px solid #1a1a1a;
+
+      padding: 25px 7%;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      color: #555;
+
+      font-size: 11px;
+    }
+
+    footer strong {
+      color: #00d9ff;
+    }
+
+    /* =====================
+       MOBILE
+    ===================== */
+
+    @media(max-width: 800px) {
+
+      .navbar {
+        padding: 0 15px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .hero h1 {
+        letter-spacing: -1px;
+      }
+
+      .stats {
+        margin-left: 15px;
+        margin-right: 15px;
+
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat:nth-child(2) {
+        border-right: 0;
+      }
+
+      .stat:nth-child(-n+2) {
+        border-bottom: 1px solid #1d1d1d;
+      }
+
+      .section {
+        padding: 75px 15px;
+      }
+
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+    }
+
+    @media(max-width: 450px) {
+
+      .nav-buttons .login-btn {
+        display: none;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 13px;
+      }
+
+      .stats {
+        margin-top: -10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =====================
+     NAVBAR
+===================== -->
+
+<nav class="navbar">
+
+  <a href="index.html" class="logo">
+    ADEZ<span>TECH</span>
+  </a>
+
+  <div class="nav-links">
+
+    <a href="#home">
+      Home
+    </a>
+
+    <a href="#services">
+      Services
+    </a>
+
+    <a href="#how">
+      How It Works
+    </a>
+
+    <a href="#contact">
+      Contact
+    </a>
+
+  </div>
+
+  <div class="nav-buttons">
+
+    <a
+      href="login.html"
+      class="btn login-btn">
+
+      Login
+
+    </a>
+
+    <a
+      href="register.html"
+      class="btn signup-btn">
+
+      Sign Up
+
+    </a>
+
+  </div>
+
+</nav>
+
+
+<!-- =====================
+     HERO
+===================== -->
+
+<section
+  class="hero"
+  id="home">
+
+  <div class="hero-content">
+
+    <div class="badge">
+      ADEZ TECH DIGITAL SERVICES
+    </div>
+
+    <h1>
+      Grow Your
+      <span>Social Media</span>
+      Faster
+    </h1>
+
+    <p>
+      Powerful social media marketing and
+      digital promotion services designed to
+      help you grow your online presence,
+      reach more people and build your brand.
+    </p>
+
+    <div class="hero-buttons">
+
+      <a
+        href="register.html"
+        class="primary">
+
+        Get Started →
+
+      </a>
+
+      <a
+        href="#services"
+        class="secondary">
+
+        Explore Services
+
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================
+     STATS
+===================== -->
+
+<div class="stats">
+
+  <div class="stat">
+
+    <h2>
+      24/7
+    </h2>
+
+    <p>
+      Service
+    </p>
+
+  </div>
+
+
+  <div class="stat">
+
+    <h2>
+      Fast
+    </h2>
+
+    <p>
+      Processing
+    </p>
+
+  </div>
+
+
+  <div class="stat">
+
+    <h2>
+      Secure
+    </h2>
+
+    <p>
+      Platform
+    </p>
+
+  </div>
+
+
+  <div class="stat">
+
+    <h2>
+      ADEZ
+    </h2>
+
+    <p>
+      Technology
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- =====================
+     SERVICES
+===================== -->
+
+<section
+  class="section"
+  id="services">
+
+  <div class="section-heading">
+
+    <small>
+      Our Services
+    </small>
+
+    <h2>
+      Everything You Need
+    </h2>
+
+    <p>
+      Access digital marketing services
+      from one professional dashboard.
+    </p>
+
+  </div>
+
+
+  <div class="services">
+
+
+    <div class="service">
+
+      <div class="service-icon">
+        📱
+      </div>
+
+      <h3>
+        Social Media Growth
+      </h3>
+
+      <p>
+        Improve your social media presence
+        and reach a larger audience.
+      </p>
+
+    </div>
+
+
+    <div class="service">
+
+      <div class="service-icon">
+        📈
+      </div>
+
+      <h3>
+        Digital Marketing
+      </h3>
+
+      <p>
+        Promote your brand and reach potential
+        customers online.
+      </p>
+
+    </div>
+
+
+    <div class="service">
+
+      <div class="service-icon">
+        🚀
+      </div>
+
+      <h3>
+        Social Promotion
+      </h3>
+
+      <p>
+        Promote your content and increase
+        your online visibility.
+      </p>
+
+    </div>
+
+
+    <div class="service">
+
+      <div class="service-icon">
+        ⚡
+      </div>
+
+      <h3>
+        Fast Delivery
+      </h3>
+
+      <p>
+        Orders are processed through a
+        streamlined service system.
+      </p>
+
+    </div>
+
+
+    <div class="service">
+
+      <div class="service-icon">
+        🔐
+      </div>
+
+      <h3>
+        Secure Account
+      </h3>
+
+      <p>
+        Manage your account through a
+        secure and simple dashboard.
+      </p>
+
+    </div>
+
+
+    <div class="service">
+
+      <div class="service-icon">
+        💬
+      </div>
+
+      <h3>
+        Customer Support
+      </h3>
+
+      <p>
+        Get assistance whenever you need
+        help with your account or orders.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =====================
+     HOW IT WORKS
+===================== -->
+
+<section
+  class="section"
+  id="how">
+
+  <div class="section-heading">
+
+    <small>
+      Simple Process
+    </small>
+
+    <h2>
+      How It Works
+    </h2>
+
+    <p>
+      Start using ADEZ TECH in just a few
+      simple steps.
+    </p>
+
+  </div>
+
+
+  <div class="steps">
+
+
+    <div class="step">
+
+      <div class="step-number">
+        1
+      </div>
+
+      <h3>
+        Create Account
+      </h3>
+
+      <p>
+        Register your ADEZ TECH account
+        in a few seconds.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-number">
+        2
+      </div>
+
+      <h3>
+        Add Funds
+      </h3>
+
+      <p>
+        Fund your account and prepare
+        to place an order.
+      </p>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-number">
+        3
+      </div>
+
+      <h3>
+        Place Order
+      </h3>
+
+      <p>
+        Select your service and submit
+        your order through the dashboard.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =====================
+     CTA
+===================== -->
+
+<section
+  class="cta"
+  id="contact">
+
+  <h2>
+    Ready to Grow?
+  </h2>
+
+  <p>
+    Create your ADEZ TECH account and
+    get started today.
+  </p>
+
+  <a
+    href="register.html"
+    class="primary">
+
+    Create Account →
+
+  </a>
+
+</section>
+
+
+<!-- =====================
+     FOOTER
+===================== -->
+
+<footer>
+
+  <div>
+    © 2026
+    <strong>
+      ADEZ TECH
+    </strong>.
+    All rights reserved.
+  </div>
+
+  <div>
+    Digital Marketing Platform
+  </div>
+
+</footer>
+
+
+<script>
+
+  /*
+   * If the user is already logged in,
+   * show Dashboard instead of Login.
+   */
+
+  const user =
+    JSON.parse(
+      localStorage.getItem(
+        "adezUser"
+      ) || "null"
+    );
+
+
+  if (user) {
+
+    const loginButtons =
+      document.querySelectorAll(
+        'a[href="login.html"]'
+      );
+
+
+    loginButtons.forEach(button => {
+
+      button.textContent =
+        "Dashboard";
+
+      button.href =
+        "dashboard.html";
+
+    });
+
+  }
+
+</script>
+
+</body>
+</html>
