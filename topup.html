@@ -1,18 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Top Up | ADEZ TECH PRO</title>
 
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -30,16 +23,17 @@
       display: flex;
     }
 
+    /* SIDEBAR */
     .sidebar {
       width: 250px;
       background: #101828;
       color: white;
       padding: 22px 15px;
       position: fixed;
-      left: 0;
       top: 0;
       bottom: 0;
-      z-index: 20;
+      left: 0;
+      z-index: 100;
     }
 
     .brand {
@@ -49,11 +43,11 @@
       padding: 5px 10px 30px;
     }
 
-    .brand-logo {
+    .logo {
       width: 42px;
       height: 42px;
       border-radius: 11px;
-      background: linear-gradient(135deg,#2563eb,#06b6d4);
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -66,9 +60,11 @@
     }
 
     .brand span {
+      display: block;
       color: #98a2b3;
       font-size: 9px;
       letter-spacing: 1.5px;
+      margin-top: 2px;
     }
 
     nav {
@@ -76,7 +72,7 @@
       gap: 5px;
     }
 
-    .nav-link {
+    nav a {
       color: #b7c2d0;
       text-decoration: none;
       padding: 12px;
@@ -87,17 +83,17 @@
       gap: 10px;
     }
 
-    .nav-link:hover,
-    .nav-link.active {
+    nav a:hover,
+    nav a.active {
       background: #1d2939;
       color: white;
     }
 
     .logout {
       position: absolute;
-      bottom: 22px;
       left: 15px;
       right: 15px;
+      bottom: 22px;
       height: 42px;
       border: 1px solid #344054;
       background: transparent;
@@ -106,6 +102,7 @@
       cursor: pointer;
     }
 
+    /* MAIN */
     .main {
       width: 100%;
       margin-left: 250px;
@@ -131,30 +128,30 @@
       margin-top: 4px;
     }
 
-    .menu-button {
+    .menu {
       display: none;
+      border: 0;
+      background: transparent;
+      font-size: 22px;
+      cursor: pointer;
     }
 
     .content {
-      padding: 30px;
       max-width: 1050px;
       margin: auto;
+      padding: 30px;
     }
 
-    .wallet-card {
-      background: linear-gradient(
-        135deg,
-        #111827,
-        #172554
-      );
-
+    /* BALANCE */
+    .balance-card {
+      background: linear-gradient(135deg, #111827, #172554);
       color: white;
       border-radius: 18px;
       padding: 28px;
       margin-bottom: 20px;
     }
 
-    .wallet-card small {
+    .balance-card small {
       color: #98a2b3;
       font-size: 12px;
     }
@@ -165,6 +162,7 @@
       margin-top: 8px;
     }
 
+    /* GRID */
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -180,7 +178,7 @@
 
     .card h2 {
       font-size: 18px;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
     .description {
@@ -190,6 +188,7 @@
       margin-bottom: 20px;
     }
 
+    /* M-PESA */
     .payment-method {
       border: 2px solid #2563eb;
       border-radius: 11px;
@@ -202,11 +201,11 @@
     }
 
     .payment-icon {
-      width: 42px;
-      height: 42px;
+      width: 43px;
+      height: 43px;
+      border-radius: 9px;
       background: #16a34a;
       color: white;
-      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -225,15 +224,16 @@
       margin-top: 3px;
     }
 
+    /* FORM */
+    .input-group {
+      margin-bottom: 16px;
+    }
+
     label {
       display: block;
       font-size: 12px;
       font-weight: 700;
       margin-bottom: 7px;
-    }
-
-    .input-group {
-      margin-bottom: 16px;
     }
 
     input {
@@ -248,22 +248,20 @@
 
     input:focus {
       border-color: #2563eb;
-      box-shadow:
-        0 0 0 3px
-        rgba(37,99,235,.1);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
     }
 
-    .quick-amounts {
+    .amounts {
       display: grid;
-      grid-template-columns: repeat(3,1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 8px;
       margin-top: 9px;
     }
 
     .amount {
       height: 38px;
-      border: 1px solid #d0d5dd;
       background: white;
+      border: 1px solid #d0d5dd;
       border-radius: 7px;
       cursor: pointer;
       font-size: 11px;
@@ -277,13 +275,12 @@
     .pay-button {
       width: 100%;
       height: 47px;
-      border: none;
+      border: 0;
       border-radius: 8px;
       background: #2563eb;
       color: white;
       font-weight: 700;
       cursor: pointer;
-      margin-top: 5px;
     }
 
     .pay-button:hover {
@@ -295,20 +292,10 @@
       cursor: not-allowed;
     }
 
-    .notice {
-      background: #fffaeb;
-      color: #b54708;
-      border-radius: 8px;
-      padding: 12px;
-      font-size: 11px;
-      line-height: 1.6;
-      margin-top: 18px;
-    }
-
+    /* STEPS */
     .steps {
       display: grid;
-      gap: 16px;
-      margin-top: 20px;
+      gap: 17px;
     }
 
     .step {
@@ -338,17 +325,18 @@
       display: block;
       color: #667085;
       font-size: 10px;
-      margin-top: 4px;
       line-height: 1.5;
+      margin-top: 4px;
     }
 
+    /* MESSAGE */
     .message {
       display: none;
       padding: 12px;
       border-radius: 8px;
       font-size: 11px;
-      margin-bottom: 15px;
       line-height: 1.5;
+      margin-bottom: 15px;
     }
 
     .message.error {
@@ -363,8 +351,18 @@
       color: #027a48;
     }
 
-    @media(max-width:800px) {
+    .notice {
+      background: #fffaeb;
+      color: #b54708;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 18px;
+      font-size: 10px;
+      line-height: 1.6;
+    }
 
+    /* MOBILE */
+    @media (max-width: 800px) {
       .sidebar {
         transform: translateX(-100%);
         transition: .25s;
@@ -378,12 +376,12 @@
         margin-left: 0;
       }
 
-      .menu-button {
+      .menu {
         display: block;
-        border: none;
-        background: transparent;
-        font-size: 21px;
-        cursor: pointer;
+      }
+
+      .topbar {
+        padding: 0 18px;
       }
 
       .content {
@@ -393,121 +391,71 @@
       .grid {
         grid-template-columns: 1fr;
       }
-
-      .topbar {
-        padding: 0 18px;
-      }
-
     }
-
   </style>
-
 </head>
-
 
 <body>
 
-
 <div class="app">
 
-
   <!-- SIDEBAR -->
-
   <aside class="sidebar" id="sidebar">
 
     <div class="brand">
-
-      <div class="brand-logo">
-        A
-      </div>
+      <div class="logo">A</div>
 
       <div>
-
-        <h2>
-          ADEZ TECH
-        </h2>
-
-        <span>
-          PRO PANEL
-        </span>
-
+        <h2>ADEZ TECH</h2>
+        <span>PRO PANEL</span>
       </div>
-
     </div>
-
 
     <nav>
 
-      <a
-        href="/dashboard.html"
-        class="nav-link"
-      >
+      <a href="/dashboard.html">
         ▣ Dashboard
       </a>
 
-      <a
-        href="/deploy.html"
-        class="nav-link"
-      >
+      <a href="/deploy.html">
         🤖 Deploy Bot
       </a>
 
-      <a
-        href="/bots.html"
-        class="nav-link"
-      >
+      <a href="/bots.html">
         📱 My Bots
       </a>
 
-      <a
-        href="/boosting.html"
-        class="nav-link"
-      >
+      <a href="/boosting.html">
         🚀 Social Media Boosting
       </a>
 
-      <a
-        href="/topup.html"
-        class="nav-link active"
-      >
+      <a href="/topup.html" class="active">
         💰 Top Up
       </a>
 
-      <a
-        href="/orders.html"
-        class="nav-link"
-      >
+      <a href="/payment.html">
+        💳 Payment
+      </a>
+
+      <a href="/orders.html">
         📦 Orders
       </a>
 
-      <a
-        href="/referrals.html"
-        class="nav-link"
-      >
+      <a href="/referrals.html">
         👥 Earn Money
       </a>
 
-      <a
-        href="/documentation.html"
-        class="nav-link"
-      >
-        📚 API Documentation
+      <a href="/api.html">
+        🔑 API
       </a>
 
-      <a
-        href="/settings.html"
-        class="nav-link"
-      >
+      <a href="/settings.html">
         ⚙️ Settings
       </a>
 
     </nav>
 
-
-    <button
-      class="logout"
-      onclick="logout()"
-    >
+    <button class="logout" onclick="logout()">
       🚪 Logout
     </button>
 
@@ -515,29 +463,17 @@
 
 
   <!-- MAIN -->
-
   <main class="main">
-
 
     <header class="topbar">
 
-      <button
-        class="menu-button"
-        onclick="toggleSidebar()"
-      >
+      <button class="menu" onclick="toggleSidebar()">
         ☰
       </button>
 
       <div>
-
-        <h1>
-          Top Up Wallet
-        </h1>
-
-        <p>
-          Add funds to your ADEZ TECH account
-        </p>
-
+        <h1>Top Up Wallet</h1>
+        <p>Add money to your ADEZ TECH PRO wallet</p>
       </div>
 
     </header>
@@ -545,22 +481,15 @@
 
     <section class="content">
 
-
       <!-- BALANCE -->
-
-      <div class="wallet-card">
+      <div class="balance-card">
 
         <small>
           Current Wallet Balance
         </small>
 
         <div class="balance">
-
-          KES
-          <span id="balance">
-            0.00
-          </span>
-
+          KES <span id="balance">0.00</span>
         </div>
 
       </div>
@@ -568,27 +497,17 @@
 
       <div class="grid">
 
-
-        <!-- PAYMENT -->
-
+        <!-- PAYMENT FORM -->
         <div class="card">
 
-          <h2>
-            Add Funds
-          </h2>
+          <h2>Add Funds</h2>
 
           <p class="description">
-
-            Enter the amount you want to add
-            to your ADEZ TECH PRO wallet.
-
+            Enter your M-Pesa number and the amount
+            you want to deposit.
           </p>
 
-
-          <div
-            id="message"
-            class="message"
-          ></div>
+          <div id="message" class="message"></div>
 
 
           <div class="payment-method">
@@ -598,22 +517,14 @@
             </div>
 
             <div>
-
-              <strong>
-                M-Pesa
-              </strong>
-
-              <span>
-                Secure mobile payment
-              </span>
-
+              <strong>M-Pesa</strong>
+              <span>Secure mobile money payment</span>
             </div>
 
           </div>
 
 
           <form id="topupForm">
-
 
             <div class="input-group">
 
@@ -622,10 +533,10 @@
               </label>
 
               <input
-                type="tel"
                 id="phone"
-                placeholder="07XXXXXXXX"
-                autocomplete="tel"
+                type="tel"
+                placeholder="0712345678"
+                maxlength="10"
                 required
               >
 
@@ -639,17 +550,15 @@
               </label>
 
               <input
-                type="number"
                 id="amount"
+                type="number"
                 min="10"
                 max="150000"
-                step="1"
                 placeholder="Enter amount"
                 required
               >
 
-
-              <div class="quick-amounts">
+              <div class="amounts">
 
                 <button
                   type="button"
@@ -712,56 +621,41 @@
               Continue with M-Pesa
             </button>
 
-
           </form>
 
 
           <div class="notice">
-
-            You will receive an M-Pesa payment
-            prompt on the phone number entered.
-            Only add money through the official
-            payment flow.
-
+            🔒 Never share your M-Pesa PIN or OTP.
+            Your wallet should only be credited after
+            the server verifies the payment.
           </div>
 
         </div>
 
 
         <!-- INSTRUCTIONS -->
-
         <div class="card">
 
-          <h2>
-            How it works
-          </h2>
+          <h2>How Top Up Works</h2>
 
           <p class="description">
-            Follow these simple steps to fund
-            your ADEZ TECH PRO wallet.
+            Follow these steps to add funds to your
+            ADEZ TECH PRO wallet.
           </p>
 
 
           <div class="steps">
 
-
             <div class="step">
 
-              <div class="step-number">
-                1
-              </div>
+              <div class="step-number">1</div>
 
               <div>
-
-                <strong>
-                  Enter your phone number
-                </strong>
-
+                <strong>Enter your M-Pesa number</strong>
                 <span>
-                  Use the M-Pesa number registered
-                  for the payment.
+                  Use the phone number that will
+                  authorize the payment.
                 </span>
-
               </div>
 
             </div>
@@ -769,21 +663,14 @@
 
             <div class="step">
 
-              <div class="step-number">
-                2
-              </div>
+              <div class="step-number">2</div>
 
               <div>
-
-                <strong>
-                  Enter the amount
-                </strong>
-
+                <strong>Enter the amount</strong>
                 <span>
-                  Select one of the quick amounts
-                  or enter your own amount.
+                  Select a quick amount or enter
+                  your preferred amount.
                 </span>
-
               </div>
 
             </div>
@@ -791,21 +678,14 @@
 
             <div class="step">
 
-              <div class="step-number">
-                3
-              </div>
+              <div class="step-number">3</div>
 
               <div>
-
-                <strong>
-                  Confirm payment
-                </strong>
-
+                <strong>Confirm on your phone</strong>
                 <span>
-                  Confirm the M-Pesa prompt on
-                  your phone.
+                  Check your phone for the M-Pesa
+                  payment request and confirm it.
                 </span>
-
               </div>
 
             </div>
@@ -813,30 +693,21 @@
 
             <div class="step">
 
-              <div class="step-number">
-                4
-              </div>
+              <div class="step-number">4</div>
 
               <div>
-
-                <strong>
-                  Wallet updated
-                </strong>
-
+                <strong>Wallet is updated</strong>
                 <span>
-                  Once payment is confirmed by the
-                  server, your wallet balance updates.
+                  After successful server-side
+                  verification, the balance is updated.
                 </span>
-
               </div>
 
             </div>
-
 
           </div>
 
         </div>
-
 
       </div>
 
@@ -849,263 +720,246 @@
 
 <script>
 
-
-function toggleSidebar() {
-
-  document
-    .getElementById("sidebar")
-    .classList.toggle("open");
-
-}
+  function toggleSidebar() {
+    document
+      .getElementById("sidebar")
+      .classList.toggle("open");
+  }
 
 
-function setAmount(value) {
-
-  document
-    .getElementById("amount")
-    .value = value;
-
-}
+  function setAmount(amount) {
+    document
+      .getElementById("amount")
+      .value = amount;
+  }
 
 
-function showMessage(text, type) {
+  function showMessage(text, type) {
 
-  const message =
-    document.getElementById("message");
+    const message =
+      document.getElementById("message");
 
-  message.textContent = text;
+    message.textContent = text;
 
-  message.className =
-    "message " + type;
+    message.className =
+      "message " + type;
+  }
 
-}
 
+  async function loadBalance() {
 
-async function loadBalance() {
+    try {
 
-  try {
-
-    const response =
-      await fetch(
-        "/api/wallet",
-        {
+      const response =
+        await fetch("/api/wallet", {
           credentials: "include"
-        }
+        });
+
+
+      if (response.status === 401) {
+        window.location.href = "/login.html";
+        return;
+      }
+
+
+      const data =
+        await response.json();
+
+
+      document.getElementById("balance")
+        .textContent =
+        Number(data.balance || 0)
+          .toFixed(2);
+
+    } catch (error) {
+
+      console.error(
+        "Balance error:",
+        error
       );
-
-
-    if (response.status === 401) {
-
-      window.location.href =
-        "/login.html";
-
-      return;
 
     }
 
-
-    const data =
-      await response.json();
-
-
-    document.getElementById(
-      "balance"
-    ).textContent =
-      Number(
-        data.balance || 0
-      ).toFixed(2);
-
-
-  } catch (error) {
-
-    console.error(error);
-
   }
 
-}
+
+  document
+    .getElementById("topupForm")
+    .addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
 
 
-loadBalance();
-
-
-document
-  .getElementById("topupForm")
-  .addEventListener(
-    "submit",
-    async function(e) {
-
-      e.preventDefault();
-
-
-      const phone =
-        document
-          .getElementById("phone")
-          .value
-          .trim();
-
-
-      const amount =
-        Number(
+        const phone =
           document
-            .getElementById("amount")
+            .getElementById("phone")
             .value
-        );
+            .trim();
 
 
-      const button =
-        document.getElementById(
-          "payButton"
-        );
-
-
-      if (!/^07\d{8}$/.test(phone)) {
-
-        showMessage(
-          "Enter a valid Kenyan M-Pesa number, for example 0712345678.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      if (
-        !amount ||
-        amount < 10
-      ) {
-
-        showMessage(
-          "Minimum top-up amount is KES 10.",
-          "error"
-        );
-
-        return;
-
-      }
-
-
-      button.disabled = true;
-
-      button.textContent =
-        "Starting payment...";
-
-
-      try {
-
-
-        const response =
-          await fetch(
-            "/api/topup",
-            {
-
-              method: "POST",
-
-              credentials: "include",
-
-              headers: {
-                "Content-Type":
-                  "application/json"
-              },
-
-              body: JSON.stringify({
-
-                phone,
-                amount
-
-              })
-
-            }
+        const amount =
+          Number(
+            document
+              .getElementById("amount")
+              .value
           );
 
 
-        const data =
-          await response.json();
+        const button =
+          document.getElementById(
+            "payButton"
+          );
 
+
+        /* VALIDATE PHONE */
+
+        if (!/^07\d{8}$/.test(phone)) {
+
+          showMessage(
+            "Enter a valid Kenyan M-Pesa number, e.g. 0712345678.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        /* VALIDATE AMOUNT */
 
         if (
-          !response.ok ||
-          !data.success
+          !Number.isFinite(amount) ||
+          amount < 10
         ) {
 
           showMessage(
-            data.message ||
-            "Unable to start payment.",
+            "Minimum top up amount is KES 10.",
             "error"
           );
+
+          return;
+        }
+
+
+        button.disabled = true;
+
+        button.textContent =
+          "Starting payment...";
+
+
+        try {
+
+          const response =
+            await fetch(
+              "/api/topup",
+              {
+                method: "POST",
+
+                credentials: "include",
+
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
+
+                body: JSON.stringify({
+                  phone: phone,
+                  amount: amount
+                })
+              }
+            );
+
+
+          const data =
+            await response.json();
+
+
+          if (
+            !response.ok ||
+            !data.success
+          ) {
+
+            showMessage(
+              data.message ||
+              "Unable to start payment.",
+              "error"
+            );
+
+            button.disabled = false;
+
+            button.textContent =
+              "Continue with M-Pesa";
+
+            return;
+          }
+
+
+          showMessage(
+            data.message ||
+            "Payment request sent. Check your phone.",
+            "success"
+          );
+
+
+          button.textContent =
+            "Payment Request Sent ✓";
+
+
+          setTimeout(
+            loadBalance,
+            5000
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Top up error:",
+            error
+          );
+
+
+          showMessage(
+            "Unable to connect to the payment server.",
+            "error"
+          );
+
 
           button.disabled = false;
 
           button.textContent =
             "Continue with M-Pesa";
-
-          return;
-
         }
 
-
-        showMessage(
-          data.message ||
-          "Payment request sent. Check your phone.",
-          "success"
-        );
-
-
-        button.textContent =
-          "Payment Request Sent";
-
-
-        setTimeout(
-          loadBalance,
-          3000
-        );
-
-
-      } catch (error) {
-
-        console.error(error);
-
-
-        showMessage(
-          "Unable to connect to the payment server.",
-          "error"
-        );
-
-
-        button.disabled = false;
-
-        button.textContent =
-          "Continue with M-Pesa";
-
-      }
-
-    }
-  );
-
-
-async function logout() {
-
-  try {
-
-    await fetch(
-      "/api/logout",
-      {
-        method: "POST"
       }
     );
 
-  } finally {
 
-    window.location.href =
-      "/login.html";
+  async function logout() {
+
+    try {
+
+      await fetch(
+        "/api/logout",
+        {
+          method: "POST",
+          credentials: "include"
+        }
+      );
+
+    } finally {
+
+      window.location.href =
+        "/login.html";
+    }
 
   }
 
-}
+
+  loadBalance();
 
 </script>
 
-
 </body>
-
-              </html>
+</html>
