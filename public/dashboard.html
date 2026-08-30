@@ -3,347 +3,840 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070b16">
+  <title>ADEZ TECH | Dashboard</title>
 
-  <title>ADEZ TECH PRO | Dashboard</title>
+  <link rel="stylesheet" href="style.css">
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --bg: #090d12;
-      --card: #14263b;
-      --dark: #0e1a2a;
-      --blue: #2458ff;
-      --text: #f1f4fa;
-      --muted: #8e9caf;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
+    .dashboard-page {
       min-height: 100vh;
+      background: #070b16;
     }
 
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    /* HEADER */
-
-    .header {
-      height: 102px;
-      margin: 10px 8px 15px;
-      border: 2px solid var(--blue);
-      border-radius: 25px;
-      background: #14253a;
-
+    .dashboard-layout {
       display: flex;
-      align-items: center;
+      min-height: calc(100vh - 75px);
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #0a1020;
+      border-right: 1px solid #1b2940;
+      padding: 25px 15px;
+      flex-shrink: 0;
+    }
+
+    .side-user {
+      padding: 18px;
+      background: #101a2d;
+      border-radius: 12px;
+      margin-bottom: 25px;
+    }
+
+    .side-user small {
+      color: #7f8ca3;
+    }
+
+    .side-user h3 {
+      margin-top: 5px;
+      word-break: break-word;
+    }
+
+    .side-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .side-menu button {
+      width: 100%;
+      padding: 13px 15px;
+      text-align: left;
+      background: transparent;
+      color: #aab5c9;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .side-menu button:hover,
+    .side-menu button.active {
+      background: #11283a;
+      color: #00d9ff;
+    }
+
+    .dashboard-main {
+      flex: 1;
+      padding: 35px;
+      max-width: 1400px;
+    }
+
+    .dashboard-header {
+      display: flex;
       justify-content: space-between;
-
-      padding: 0 20px;
-
-      box-shadow: 0 0 18px rgba(36, 88, 255, .15);
-    }
-
-    .header-left {
-      display: flex;
       align-items: center;
       gap: 20px;
+      margin-bottom: 30px;
     }
 
-    .menu-btn {
-      width: 40px;
-      height: 40px;
-
-      border: none;
-      background: transparent;
-
-      color: #dce4ee;
-      font-size: 31px;
-      line-height: 1;
-
-      cursor: pointer;
-    }
-
-    .brand {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: .5px;
-    }
-
-    .brand span {
-      color: #9ca7b7;
-    }
-
-    .profile-logo {
-      width: 58px;
-      height: 58px;
-
-      border-radius: 50%;
-
-      border: 2px solid var(--blue);
-
-      background:
-        radial-gradient(
-          circle,
-          #173b72 0%,
-          #07101c 70%
-        );
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      color: #36dfff;
-      font-size: 9px;
-      font-weight: 800;
-
-      text-align: center;
-      line-height: 1.1;
-    }
-
-    /* MAIN */
-
-    .container {
-      width: 100%;
-      max-width: 760px;
-      margin: auto;
-      padding: 0 8px 30px;
-    }
-
-    /* WELCOME */
-
-    .welcome {
-      min-height: 137px;
-
-      background: var(--card);
-
-      border-radius: 22px;
-
-      padding: 25px 22px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      margin-bottom: 17px;
-    }
-
-    .welcome-left {
-      display: flex;
-      align-items: center;
-      gap: 17px;
-    }
-
-    .welcome-logo {
-      width: 79px;
-      height: 79px;
-
-      border-radius: 16px;
-
-      background: #02080e;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      color: #1760ff;
-
-      font-size: 20px;
-      font-weight: 900;
-    }
-
-    .welcome-small {
-      color: #8794a6;
-
-      font-size: 13px;
-      font-weight: 800;
-
-      letter-spacing: 2px;
-
+    .dashboard-header h1 {
+      font-size: 30px;
       margin-bottom: 5px;
     }
 
-    .welcome h1 {
-      font-size: 25px;
-      font-weight: 800;
+    .dashboard-header p {
+      color: #8794aa;
     }
 
-    .currency {
-      color: #d9e0e9;
-
-      font-size: 14px;
-
-      display: flex;
-      align-items: center;
-      gap: 8px;
-
-      white-space: nowrap;
+    .mobile-menu {
+      display: none;
     }
 
-    .currency span {
-      color: #8997a9;
-      font-size: 19px;
-    }
-
-    /* QUICK ACTIONS */
-
-    .quick-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-
-      gap: 16px;
-
-      margin-bottom: 17px;
-    }
-
-    .quick-card {
-      min-height: 102px;
-
-      background: var(--card);
-
-      border-radius: 22px;
-
-      display: flex;
-      align-items: center;
-
-      padding: 18px;
-
-      text-decoration: none;
-      color: white;
-
-      transition: .2s;
-    }
-
-    .quick-card:hover {
-      transform: translateY(-2px);
-    }
-
-    .quick-icon {
-      width: 57px;
-      height: 57px;
-
-      background: #153b87;
-
-      border-radius: 16px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 27px;
-
-      margin-right: 18px;
-    }
-
-    .quick-title {
-      font-size: 17px;
-      font-weight: 700;
-    }
-
-    .quick-subtitle {
-      color: #8997a8;
-
-      font-size: 13px;
-
-      margin-top: 7px;
-    }
-
-    /* BALANCE */
-
-    .balance-card {
-      position: relative;
-
-      height: 405px;
-
-      overflow: hidden;
-
-      background:
-        radial-gradient(
-          circle at 75% 45%,
-          rgba(29, 61, 128, .48),
-          transparent 55%
-        ),
-        var(--card);
-
-      border-radius: 23px;
-
-      padding: 25px;
-
-      margin-bottom: 18px;
-    }
-
-    .balance-title {
-      color: #9ba7b7;
-
-      font-size: 14px;
-      font-weight: 800;
-
-      letter-spacing: 2px;
-
-      margin-bottom: 20px;
-    }
-
-    .balance-actions {
+    .overview-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-
-      gap: 10px;
-
-      position: relative;
-      z-index: 5;
+      gap: 18px;
+      margin-bottom: 30px;
     }
 
-    .balance-btn {
-      height: 49px;
+    .overview-card {
+      background: #0d1424;
+      border: 1px solid #1b2940;
+      border-radius: 14px;
+      padding: 23px;
+    }
 
-      border-radius: 25px;
+    .overview-card .card-icon {
+      font-size: 25px;
+      margin-bottom: 12px;
+    }
 
-      border: 1px solid #29415d;
-
-      background: rgba(17, 31, 48, .45);
-
-      color: #e5e9ef;
-
+    .overview-card p {
+      color: #8996ac;
       font-size: 14px;
-      font-weight: 600;
+    }
 
+    .overview-card h2 {
+      margin-top: 6px;
+      font-size: 25px;
+    }
+
+    .dashboard-section {
+      background: #0d1424;
+      border: 1px solid #1b2940;
+      border-radius: 14px;
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    .dashboard-section h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .service-item {
+      border: 1px solid #24344e;
+      background: #0a1020;
+      border-radius: 11px;
+      padding: 20px;
+    }
+
+    .service-item .service-icon {
+      font-size: 28px;
+    }
+
+    .service-item h3 {
+      margin: 10px 0 5px;
+    }
+
+    .service-item p {
+      color: #8996ac;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .order-form {
+      max-width: 700px;
+    }
+
+    .order-form button {
+      margin-top: 20px;
+    }
+
+    .orders-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .orders-table th,
+    .orders-table td {
+      text-align: left;
+      padding: 14px 10px;
+      border-bottom: 1px solid #1b2940;
+      font-size: 14px;
+    }
+
+    .orders-table th {
+      color: #8491a7;
+      font-weight: normal;
+    }
+
+    .empty-orders {
+      text-align: center;
+      padding: 35px 10px;
+      color: #7f8ca3;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 20px;
+      background: #172536;
+      color: #00d9ff;
+      font-size: 12px;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .profile-item {
+      background: #0a1020;
+      border: 1px solid #1b2940;
+      border-radius: 10px;
+      padding: 17px;
+    }
+
+    .profile-item small {
+      display: block;
+      color: #7f8ca3;
+      margin-bottom: 5px;
+    }
+
+    .danger-btn {
+      background: #29151b;
+      color: #ff7585;
+      border: 1px solid #6a303a;
+      padding: 11px 18px;
+      border-radius: 8px;
       cursor: pointer;
-
-      transition: .2s;
     }
 
-    .balance-btn:hover {
-      border-color: var(--blue);
-      background: #142d54;
+    @media (max-width: 850px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: block;
+        background: transparent;
+        border: 1px solid #263650;
+        color: white;
+        padding: 9px 12px;
+        border-radius: 7px;
+        cursor: pointer;
+      }
+
+      .dashboard-main {
+        padding: 25px 18px;
+      }
+
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-header {
+        align-items: flex-start;
+      }
+
+      .orders-table {
+        min-width: 650px;
+      }
+
+      .table-container {
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+
+<body class="dashboard-page">
+
+<header class="dashboard-nav">
+  <a href="index.html" class="logo">
+    ADEZ<span>TECH</span>
+  </a>
+
+  <button class="logout-btn" onclick="logout()">
+    Logout
+  </button>
+</header>
+
+<div class="dashboard-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="side-user">
+      <small>ACCOUNT</small>
+      <h3 id="sideUserName">User</h3>
+    </div>
+
+    <div class="side-menu">
+      <button class="active" onclick="showSection('overview', this)">
+        🏠 Overview
+      </button>
+
+      <button onclick="showSection('services', this)">
+        📦 Services
+      </button>
+
+      <button onclick="showSection('newOrder', this)">
+        🛒 New Order
+      </button>
+
+      <button onclick="showSection('orders', this)">
+        📋 My Orders
+      </button>
+
+      <button onclick="showSection('profile', this)">
+        👤 Profile
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="dashboard-main">
+
+    <!-- HEADER -->
+    <div class="dashboard-header">
+      <div>
+        <p>WELCOME BACK</p>
+        <h1>Hello, <span id="userName">User</span> 👋</h1>
+        <p>Manage your ADEZ TECH account.</p>
+      </div>
+
+      <button class="mobile-menu" onclick="toggleMobileMenu()">
+        ☰ Menu
+      </button>
+    </div>
+
+
+    <!-- OVERVIEW -->
+    <section id="overview" class="dashboard-section">
+
+      <h2>Account Overview</h2>
+
+      <div class="overview-grid">
+
+        <div class="overview-card">
+          <div class="card-icon">💰</div>
+          <p>Account Balance</p>
+          <h2 id="balance">KSh 0.00</h2>
+        </div>
+
+        <div class="overview-card">
+          <div class="card-icon">📦</div>
+          <p>Total Orders</p>
+          <h2 id="totalOrders">0</h2>
+        </div>
+
+        <div class="overview-card">
+          <div class="card-icon">⚡</div>
+          <p>Active Orders</p>
+          <h2 id="activeOrders">0</h2>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SERVICES -->
+    <section id="services" class="dashboard-section">
+
+      <h2>Available Services</h2>
+
+      <div class="service-grid">
+
+        <div class="service-item">
+          <div class="service-icon">📱</div>
+          <h3>Social Media Growth</h3>
+          <p>
+            Digital promotion services for social media accounts.
+          </p>
+          <button
+            class="primary-btn"
+            onclick="selectService('Social Media Growth')">
+            Order Now
+          </button>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon">📈</div>
+          <h3>Digital Marketing</h3>
+          <p>
+            Promote your digital brand and online presence.
+          </p>
+          <button
+            class="primary-btn"
+            onclick="selectService('Digital Marketing')">
+            Order Now
+          </button>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon">🚀</div>
+          <h3>Social Promotion</h3>
+          <p>
+            Promotion tools for eligible social media content.
+          </p>
+          <button
+            class="primary-btn"
+            onclick="selectService('Social Media Promotion')">
+            Order Now
+          </button>
+        </div>
+
+        <div class="service-item">
+          <div class="service-icon">⚙️</div>
+          <h3>Other Services</h3>
+          <p>
+            Contact ADEZ TECH for additional digital services.
+          </p>
+          <button
+            class="primary-btn"
+            onclick="selectService('Other Digital Service')">
+            Order Now
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- NEW ORDER -->
+    <section id="newOrder" class="dashboard-section">
+
+      <h2>Create New Order</h2>
+
+      <form id="orderForm" class="order-form">
+
+        <label for="service">
+          Select Service
+        </label>
+
+        <select id="service" required>
+          <option value="">
+            Choose a service
+          </option>
+
+          <option value="Social Media Growth">
+            Social Media Growth
+          </option>
+
+          <option value="Digital Marketing">
+            Digital Marketing
+          </option>
+
+          <option value="Social Media Promotion">
+            Social Media Promotion
+          </option>
+
+          <option value="Other Digital Service">
+            Other Digital Service
+          </option>
+        </select>
+
+
+        <label for="serviceLink">
+          Link / Details
+        </label>
+
+        <input
+          id="serviceLink"
+          type="text"
+          placeholder="Enter your link or order details"
+          required
+        >
+
+
+        <label for="quantity">
+          Quantity
+        </label>
+
+        <input
+          id="quantity"
+          type="number"
+          min="1"
+          placeholder="Enter quantity"
+          required
+        >
+
+
+        <button
+          type="submit"
+          class="primary-btn">
+          Continue to Payment →
+        </button>
+
+      </form>
+
+    </section>
+
+
+    <!-- ORDERS -->
+    <section id="orders" class="dashboard-section">
+
+      <h2>My Orders</h2>
+
+      <div class="table-container">
+
+        <table class="orders-table">
+
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Service</th>
+              <th>Quantity</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="ordersBody">
+          </tbody>
+
+        </table>
+
+        <div
+          id="emptyOrders"
+          class="empty-orders">
+          You haven't placed any orders yet.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+    <section id="profile" class="dashboard-section">
+
+      <h2>My Profile</h2>
+
+      <div class="profile-grid">
+
+        <div class="profile-item">
+          <small>Full Name</small>
+          <strong id="profileName">-</strong>
+        </div>
+
+        <div class="profile-item">
+          <small>Email</small>
+          <strong id="profileEmail">-</strong>
+        </div>
+
+        <div class="profile-item">
+          <small>Phone</small>
+          <strong id="profilePhone">-</strong>
+        </div>
+
+        <div class="profile-item">
+          <small>Account Status</small>
+          <strong>Active</strong>
+        </div>
+
+      </div>
+
+      <br>
+
+      <button class="danger-btn" onclick="logout()">
+        Logout Account
+      </button>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<script>
+  // Load user
+  const savedUser = JSON.parse(
+    localStorage.getItem("adezUser") || "null"
+  );
+
+  if (!savedUser) {
+    window.location.href = "login.html";
+  }
+
+  if (savedUser) {
+
+    const name =
+      savedUser.name || "User";
+
+    document.getElementById("userName").textContent =
+      name;
+
+    document.getElementById("sideUserName").textContent =
+      name;
+
+    document.getElementById("profileName").textContent =
+      name;
+
+    document.getElementById("profileEmail").textContent =
+      savedUser.email || "-";
+
+    document.getElementById("profilePhone").textContent =
+      savedUser.phone || "-";
+  }
+
+
+  // Section navigation
+  function showSection(sectionId, button) {
+
+    const sections = [
+      "overview",
+      "services",
+      "newOrder",
+      "orders",
+      "profile"
+    ];
+
+    sections.forEach(id => {
+      const section =
+        document.getElementById(id);
+
+      if (section) {
+        section.style.display =
+          id === sectionId ? "block" : "none";
+      }
+    });
+
+    document
+      .querySelectorAll(".side-menu button")
+      .forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+    if (button) {
+      button.classList.add("active");
     }
 
-    .balance-number {
-      position: relative;
-      z-index: 2;
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
 
-      display: flex;
-      align-items: center;
 
-      margin-top: 40px;
+  // Select service
+  function selectService(serviceName) {
+
+    const service =
+      document.getElementById("service");
+
+    service.value = serviceName;
+
+    showSection(
+      "newOrder",
+      document.querySelectorAll(".side-menu button")[2]
+    );
+
+    document.getElementById("serviceLink").focus();
+  }
+
+
+  // Create order
+  const orderForm =
+    document.getElementById("orderForm");
+
+  orderForm.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const service =
+      document.getElementById("service").value;
+
+    const link =
+      document.getElementById("serviceLink").value.trim();
+
+    const quantity =
+      document.getElementById("quantity").value;
+
+    if (!service || !link || !quantity) {
+      alert("Please complete all order fields.");
+      return;
     }
 
-    .balance-number .zero {
-      font-size: 68px;
-      font-weight: 300;
-      line-height: 1;
+    const order = {
+      id: "ADEZ-" + Date.now(),
+      service: service,
+      link: link,
+      quantity: Number(quantity),
+      status: "Pending",
+      createdAt: new Date().toISOString()
+    };
+
+    const existingOrders =
+      JSON.parse(
+        localStorage.getItem("adezOrders") || "[]"
+      );
+
+    existingOrders.push(order);
+
+    localStorage.setItem(
+      "adezOrders",
+      JSON.stringify(existingOrders)
+    );
+
+    // Save current order for payment
+    localStorage.setItem(
+      "adezOrder",
+      JSON.stringify(order)
+    );
+
+    window.location.href = "payment.html";
+  });
+
+
+  // Load orders
+  function loadOrders() {
+
+    const orders =
+      JSON.parse(
+        localStorage.getItem("adezOrders") || "[]"
+      );
+
+    const body =
+      document.getElementById("ordersBody");
+
+    const empty =
+      document.getElementById("emptyOrders");
+
+    body.innerHTML = "";
+
+    if (orders.length === 0) {
+
+      empty.style.display = "block";
+
+      document.getElementById("totalOrders")
+        .textContent = "0";
+
+      document.getElementById("activeOrders")
+        .textContent = "0";
+
+      return;
     }
 
-    .balance-details {
-      margin-left: 7px;
-      margin-top: 7px;
-    }
+    empty.style.display = "none";
 
-    .balance-details strong {
+    let active = 0;
+
+    orders.forEach(order => {
+
+      if (
+        order.status === "Pending" ||
+        order.status === "Processing"
+      ) {
+        active++;
+      }
+
+      const row =
+        document.createElement("tr");
+
+      row.innerHTML = `
+        <td>${escapeHTML(order.id)}</td>
+        <td>${escapeHTML(order.service)}</td>
+        <td>${escapeHTML(String(order.quantity))}</td>
+        <td>
+          <span class="status">
+            ${escapeHTML(order.status)}
+          </span>
+        </td>
+      `;
+
+      body.appendChild(row);
+    });
+
+    document.getElementById("totalOrders")
+      .textContent = orders.length;
+
+    document.getElementById("activeOrders")
+      .textContent = active;
+  }
+
+
+  // Prevent HTML injection when displaying stored values
+  function escapeHTML(value) {
+
+    return value
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+
+  // Logout
+  function logout() {
+
+    localStorage.removeItem("adezUser");
+    localStorage.removeItem("adezOrder");
+
+    window.location.href = "login.html";
+  }
+
+
+  // Mobile sidebar
+  function toggleMobileMenu() {
+
+    const sidebar =
+      document.querySelector(".sidebar");
+
+    if (
+      sidebar.style.display === "block"
+    ) {
+      sidebar.style.display = "none";
+    } else {
+      sidebar.style.display = "block";
+      sidebar.style.position = "absolute";
+      sidebar.style.zIndex = "1000";
+      sidebar.style.height = "calc(100vh - 75px)";
+    }
+  }
+
+
+  // Initial page
+  showSection(
+    "overview",
+    document.querySelector(".side-menu button")
+  );
+
+  loadOrders();
+</script>
+
+</body>
+  </html>
