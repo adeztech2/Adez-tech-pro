@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Create Account - ADEZ TECH PRO</title>
+
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body class="auth-page">
+
+  <div class="auth-box">
+
+    <div class="auth-logo">A</div>
+
+    <h1>Create Account</h1>
+
+    <p class="auth-subtitle">
+      Join ADEZ TECH PRO
+    </p>
+
+    <div id="message" class="message"></div>
+
+    <form id="registerForm">
+
+      <label>Full Name</label>
+
+      <input
+        type="text"
+        id="name"
+        placeholder="Enter your name"
+        required
+      >
+
+      <label>Email Address</label>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+        required
+      >
+
+      <label>Password</label>
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Create a password"
+        minlength="6"
+        required
+      >
+
+      <label>Confirm Password</label>
+
+      <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm your password"
+        minlength="6"
+        required
+      >
+
+      <button type="submit" class="auth-button">
+        Create Account
+      </button>
+
+    </form>
+
+    <p class="switch-auth">
+
+      Already have an account?
+
+      <a href="/login.html">
+        Login
+      </a>
+
+    </p>
+
+  </div>
+
+
+<script>
+
+const form =
+  document.getElementById("registerForm");
+
+const message =
+  document.getElementById("message");
+
+
+form.addEventListener("submit", async function(e) {
+
+  e.preventDefault();
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  const confirmPassword =
+    document.getElementById("confirmPassword").value;
+
+
+  if (password !== confirmPassword) {
+
+    message.textContent =
+      "Passwords do not match.";
+
+    message.className =
+      "message error";
+
+    return;
+
+  }
+
+
+  message.textContent =
+    "Creating account...";
+
+  message.className =
+    "message";
+
+
+  try {
+
+    const response = await fetch(
+      "/api/register",
+      {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          name,
+          email,
+          password
+        })
+
+      }
+    );
+
+
+    const data =
+      await response.json();
+
+
+    if (!data.success) {
+
+      message.textContent =
+        data.message;
+
+      message.className =
+        "message error";
+
+      return;
+
+    }
+
+
+    message.textContent =
+      "Account created successfully!";
+
+    message.className =
+      "message success";
+
+
+    setTimeout(() => {
+
+      window.location.href =
+        "/dashboard.html";
+
+    }, 700);
+
+
+  } catch (error) {
+
+    message.textContent =
+      "Unable to connect to server.";
+
+    message.className =
+      "message error";
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
