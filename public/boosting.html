@@ -544,4 +544,523 @@ input:focus{
             data-name="Instagram Followers"
             data-price="60">
 
-            Instagram Followers
+            Instagram Followers — 60 KSH / 1K
+
+          </option>
+
+          <option
+            value="instagram_likes"
+            data-name="Instagram Likes"
+            data-price="40">
+
+            Instagram Likes — 40 KSH / 1K
+
+          </option>
+
+          <option
+            value="tiktok_followers"
+            data-name="TikTok Followers"
+            data-price="50">
+
+            TikTok Followers — 50 KSH / 1K
+
+          </option>
+
+          <option
+            value="tiktok_likes"
+            data-name="TikTok Likes"
+            data-price="30">
+
+            TikTok Likes — 30 KSH / 1K
+
+          </option>
+
+          <option
+            value="youtube_subscribers"
+            data-name="YouTube Subscribers"
+            data-price="80">
+
+            YouTube Subscribers — 80 KSH / 1K
+
+          </option>
+
+          <option
+            value="youtube_views"
+            data-name="YouTube Views"
+            data-price="20">
+
+            YouTube Views — 20 KSH / 1K
+
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- LINK -->
+
+      <div class="form-group">
+
+        <label for="link">
+          Social Media Link
+        </label>
+
+        <input
+          type="url"
+          id="link"
+          placeholder="https://..."
+          required>
+
+      </div>
+
+
+      <!-- QUANTITY -->
+
+      <div class="form-group">
+
+        <label for="quantity">
+          Quantity
+        </label>
+
+        <input
+          type="number"
+          id="quantity"
+          min="100"
+          max="1000000"
+          step="100"
+          value="1000"
+          required>
+
+      </div>
+
+
+      <!-- SERVICE INFO -->
+
+      <div class="service-info">
+
+        <div class="service-info-row">
+
+          <span>Service</span>
+
+          <span id="serviceName">
+            Not selected
+          </span>
+
+        </div>
+
+        <div class="service-info-row">
+
+          <span>Rate</span>
+
+          <span>
+            <span id="rate">0</span>
+            KSH / 1K
+          </span>
+
+        </div>
+
+        <div class="service-info-row">
+
+          <span>Quantity</span>
+
+          <span id="quantityDisplay">
+            1,000
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- PRICE -->
+
+      <div class="price-box">
+
+        <div class="price-label">
+          TOTAL PRICE
+        </div>
+
+        <div class="price">
+
+          <span id="totalPrice">
+            0.00
+          </span>
+
+          <small>KSH</small>
+
+        </div>
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="order-btn"
+        id="orderBtn">
+
+        Place Order
+
+      </button>
+
+    </form>
+
+  </section>
+
+</main>
+
+
+<script>
+
+/* MENU */
+
+function openMenu(){
+
+  document
+    .getElementById("sideMenu")
+    .classList.add("open");
+
+  document
+    .getElementById("overlay")
+    .classList.add("show");
+}
+
+function closeMenu(){
+
+  document
+    .getElementById("sideMenu")
+    .classList.remove("open");
+
+  document
+    .getElementById("overlay")
+    .classList.remove("show");
+}
+
+
+/* MESSAGE */
+
+function showMessage(text,type){
+
+  const message =
+    document.getElementById("message");
+
+  message.textContent=text;
+
+  message.className=
+    "message "+type;
+}
+
+
+/* ELEMENTS */
+
+const service =
+  document.getElementById("service");
+
+const quantity =
+  document.getElementById("quantity");
+
+const serviceName =
+  document.getElementById("serviceName");
+
+const rate =
+  document.getElementById("rate");
+
+const quantityDisplay =
+  document.getElementById("quantityDisplay");
+
+const totalPrice =
+  document.getElementById("totalPrice");
+
+
+/* CALCULATE */
+
+function calculate(){
+
+  const option =
+    service.options[
+      service.selectedIndex
+    ];
+
+  const price =
+    Number(
+      option?.dataset?.price || 0
+    );
+
+  const qty =
+    Number(quantity.value || 0);
+
+  const total =
+    (price * qty) / 1000;
+
+
+  serviceName.textContent =
+    option?.dataset?.name ||
+    "Not selected";
+
+
+  rate.textContent =
+    price.toFixed(2);
+
+
+  quantityDisplay.textContent =
+    qty.toLocaleString();
+
+
+  totalPrice.textContent =
+    total.toFixed(2);
+}
+
+
+/* EVENTS */
+
+service.addEventListener(
+  "change",
+  calculate
+);
+
+quantity.addEventListener(
+  "input",
+  calculate
+);
+
+calculate();
+
+
+/* LOAD BALANCE */
+
+async function loadBalance(){
+
+  try{
+
+    const response =
+      await fetch(
+        "/api/dashboard",
+        {
+          credentials:"include"
+        }
+      );
+
+    if(response.status===401){
+
+      location.href="/login.html";
+
+      return;
+    }
+
+    if(!response.ok) return;
+
+    const data =
+      await response.json();
+
+    document
+      .getElementById("balance")
+      .textContent =
+      Number(
+        data.balanceKsh || 0
+      ).toFixed(2);
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+}
+
+loadBalance();
+
+
+/* PLACE ORDER */
+
+document
+  .getElementById("boostForm")
+  .addEventListener(
+    "submit",
+    async function(e){
+
+      e.preventDefault();
+
+
+      const option =
+        service.options[
+          service.selectedIndex
+        ];
+
+      const serviceId =
+        service.value;
+
+      const link =
+        document
+          .getElementById("link")
+          .value
+          .trim();
+
+      const qty =
+        Number(quantity.value);
+
+
+      if(!serviceId){
+
+        showMessage(
+          "Please select a service.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      if(!link){
+
+        showMessage(
+          "Please enter your social media link.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      if(qty < 100){
+
+        showMessage(
+          "Minimum quantity is 100.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      const price =
+        Number(
+          option.dataset.price || 0
+        );
+
+
+      const amount =
+        (price * qty) / 1000;
+
+
+      const button =
+        document.getElementById(
+          "orderBtn"
+        );
+
+
+      button.disabled=true;
+
+      button.textContent=
+        "Processing...";
+
+
+      try{
+
+        const response =
+          await fetch(
+            "/api/orders",
+            {
+              method:"POST",
+
+              credentials:"include",
+
+              headers:{
+                "Content-Type":
+                  "application/json",
+
+                "Accept":
+                  "application/json"
+              },
+
+              body:JSON.stringify({
+
+                service:serviceId,
+
+                serviceName:
+                  option.dataset.name,
+
+                link:link,
+
+                quantity:qty,
+
+                amount:amount
+
+              })
+            }
+          );
+
+
+        let data={};
+
+        try{
+
+          data =
+            await response.json();
+
+        }catch{}
+
+
+        if(response.status===401){
+
+          location.href=
+            "/login.html";
+
+          return;
+        }
+
+
+        if(!response.ok){
+
+          showMessage(
+            data.message ||
+            data.error ||
+            "Order could not be created.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        showMessage(
+          data.message ||
+          "Order placed successfully!",
+          "success"
+        );
+
+
+        document
+          .getElementById("boostForm")
+          .reset();
+
+
+        quantity.value=1000;
+
+        calculate();
+
+        loadBalance();
+
+
+      }catch(error){
+
+        console.error(error);
+
+        showMessage(
+          "Unable to connect to the server.",
+          "error"
+        );
+
+      }finally{
+
+        button.disabled=false;
+
+        button.textContent=
+          "Place Order";
+      }
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
