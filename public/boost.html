@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ADEZ TECH PRO | Boost</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --bg:#090d12;
+  --card:#14263b;
+  --input:#0b1725;
+  --blue:#2458ff;
+  --text:#f3f6fa;
+  --muted:#8e9caf;
+  --border:#263b55;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
+}
+
+.header{
+  height:102px;
+  margin:10px 8px 15px;
+  border:2px solid var(--blue);
+  border-radius:25px;
+  background:#14253a;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.menu-btn{
+  border:0;
+  background:none;
+  color:white;
+  font-size:30px;
+  cursor:pointer;
+}
+
+.brand{
+  font-size:20px;
+  font-weight:800;
+}
+
+.brand span{
+  color:#9ca7b7;
+}
+
+.profile-logo{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  border:2px solid var(--blue);
+  background:radial-gradient(circle,#173b72,#07101c 70%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#36dfff;
+  font-size:9px;
+  font-weight:800;
+  text-align:center;
+}
+
+.container{
+  width:100%;
+  max-width:760px;
+  margin:auto;
+  padding:0 8px 40px;
+}
+
+.title-card{
+  background:var(--card);
+  border-radius:22px;
+  padding:25px 22px;
+  margin-bottom:17px;
+}
+
+.title-card small{
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+.title-card h1{
+  font-size:27px;
+  margin-top:8px;
+}
+
+.title-card p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:8px;
+}
+
+.balance-card{
+  background:var(--card);
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:17px;
+}
+
+.balance-label{
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+
+.balance{
+  font-size:28px;
+  font-weight:800;
+  margin-top:7px;
+}
+
+.form-card{
+  background:var(--card);
+  border-radius:22px;
+  padding:23px;
+}
+
+.group{
+  margin-bottom:17px;
+}
+
+label{
+  display:block;
+  color:#cbd4df;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+select,
+input{
+  width:100%;
+  height:53px;
+  background:var(--input);
+  color:white;
+  border:1px solid var(--border);
+  border-radius:13px;
+  outline:none;
+  padding:0 15px;
+  font-size:14px;
+}
+
+select:focus,
+input:focus{
+  border-color:var(--blue);
+}
+
+.info{
+  background:#0d1b2d;
+  border-radius:15px;
+  padding:17px;
+  margin:18px 0;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:9px 0;
+  border-bottom:1px solid #1c3048;
+  font-size:13px;
+}
+
+.row:last-child{
+  border-bottom:0;
+}
+
+.row span:first-child{
+  color:var(--muted);
+}
+
+.row span:last-child{
+  font-weight:700;
+}
+
+.price-card{
+  background:#102b61;
+  border:1px solid #214ca9;
+  border-radius:17px;
+  padding:20px;
+  margin:20px 0;
+}
+
+.price-label{
+  color:#9eabc0;
+  font-size:12px;
+  font-weight:700;
+}
+
+.price{
+  font-size:34px;
+  font-weight:800;
+  margin-top:6px;
+}
+
+.price small{
+  font-size:13px;
+  color:#9ba8ba;
+}
+
+.submit{
+  width:100%;
+  height:55px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(135deg,#2458ff,#1642d4);
+  color:white;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.submit:disabled{
+  opacity:.6;
+}
+
+.message{
+  display:none;
+  padding:13px;
+  border-radius:12px;
+  margin-bottom:17px;
+  font-size:13px;
+}
+
+.message.show{
+  display:block;
+}
+
+.error{
+  color:#ffb1b6;
+  background:rgba(255,70,80,.1);
+  border:1px solid rgba(255,70,80,.2);
+}
+
+.success{
+  color:#9df2c5;
+  background:rgba(53,217,138,.1);
+  border:1px solid rgba(53,217,138,.2);
+}
+
+/* MENU */
+
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:20;
+}
+
+.overlay.show{
+  display:block;
+}
+
+.side-menu{
+  position:fixed;
+  top:0;
+  left:-285px;
+  width:275px;
+  height:100vh;
+  background:#101d2e;
+  z-index:30;
+  padding:25px;
+  transition:.25s;
+}
+
+.side-menu.open{
+  left:0;
+}
+
+.side-brand{
+  font-size:21px;
+  font-weight:800;
+  margin-bottom:35px;
+}
+
+.side-menu a{
+  display:block;
+  color:#c4ceda;
+  text-decoration:none;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:5px;
+  font-size:14px;
+}
+
+.side-menu a:hover,
+.side-menu a.active{
+  background:#18335a;
+  color:white;
+}
+
+@media(max-width:500px){
+
+  .form-card{
+    padding:19px;
+  }
+
+  .title-card h1{
+    font-size:24px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- SIDE MENU -->
+
+<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+
+<aside id="sideMenu" class="side-menu">
+
+  <div class="side-brand">
+    ADEZ <span style="color:#8d98a8;">TECH PRO</span>
+  </div>
+
+  <a href="/dashboard.html">
+    🏠 Dashboard
+  </a>
+
+  <a href="/deploy.html">
+    ☁️ Deploy Bots
+  </a>
+
+  <a href="/boost.html" class="active">
+    📣 Boost
+  </a>
+
+  <a href="/topup.html">
+    💰 Top Up
+  </a>
+
+  <a href="/payment.html">
+    💳 Payments
+  </a>
+
+  <a href="/api.html">
+    🔑 API
+  </a>
+
+  <a href="/orders.html">
+    📦 Orders
+  </a>
+
+  <a href="/referrals.html">
+    👥 Referrals
+  </a>
+
+  <a href="/settings.html">
+    ⚙️ Settings
+  </a>
+
+  <a href="/login.html">
+    🚪 Logout
+  </a>
+
+</aside>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+  <div class="header-left">
+
+    <button class="menu-btn" onclick="openMenu()">
+      ☰
+    </button>
+
+    <div class="brand">
+      ADEZ <span>TECH PRO</span>
+    </div>
+
+  </div>
+
+  <div class="profile-logo">
+    ADEZ<br>TECH
+  </div>
+
+</header>
+
+
+<main class="container">
+
+  <section class="title-card">
+
+    <small>SOCIAL MEDIA SERVICES</small>
+
+    <h1>📣 Boost</h1>
+
+    <p>
+      Select a service and place your social media order.
+    </p>
+
+  </section>
+
+
+  <section class="balance-card">
+
+    <div class="balance-label">
+      AVAILABLE BALANCE
+    </div>
+
+    <div class="balance">
+      <span id="balance">0.00</span> KSH
+    </div>
+
+  </section>
+
+
+  <section class="form-card">
+
+    <div id="message" class="message"></div>
+
+    <form id="boostForm">
+
+      <div class="group">
+
+        <label>
+          Service
+        </label>
+
+        <select id="service" required>
+
+          <option value="">
+            Select service
+          </option>
+
+          <option value="facebook_followers"
+                  data-name="Facebook Followers"
+                  data-price="50">
+            Facebook Followers — 50 KSH / 1K
+          </option>
+
+          <option value="facebook_likes"
+                  data-name="Facebook Likes"
+                  data-price="40">
+            Facebook Likes — 40 KSH / 1K
+          </option>
+
+          <option value="instagram_followers"
+                  data-name="Instagram Followers"
+                  data-price="60">
+            Instagram Followers — 60 KSH / 1K
+          </option>
+
+          <option value="instagram_likes"
+                  data-name="Instagram Likes"
+                  data-price="40">
+            Instagram Likes — 40 KSH / 1K
+          </option>
+
+          <option value="tiktok_followers"
+                  data-name="TikTok Followers"
+                  data-price="50">
+            TikTok Followers — 50 KSH / 1K
+          </option>
+
+          <option value="tiktok_likes"
+                  data-name="TikTok Likes"
+                  data-price="30">
+            TikTok Likes — 30 KSH / 1K
+          </option>
+
+          <option value="youtube_subscribers"
+                  data-name="YouTube Subscribers"
+                  data-price="80">
+            YouTube Subscribers — 80 KSH / 1K
+          </option>
+
+          <option value="youtube_views"
+                  data-name="YouTube Views"
+                  data-price="20">
+            YouTube Views — 20 KSH / 1K
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="group">
+
+        <label>
+          Social Media Link
+        </label>
+
+        <input
+          id="link"
+          type="url"
+          placeholder="https://..."
+          required>
+
+      </div>
+
+
+      <div class="group">
+
+        <label>
+          Quantity
+        </label>
+
+        <input
+          id="quantity"
+          type="number"
+          min="100"
+          max="1000000"
+          step="100"
+          value="1000"
+          required>
+
+      </div>
+
+
+      <div class="info">
+
+        <div class="row">
+          <span>Service</span>
+          <span id="serviceName">Not selected</span>
+        </div>
+
+        <div class="row">
+          <span>Rate</span>
+          <span>
+            <span id="rate">0</span> KSH / 1K
+          </span>
+        </div>
+
+        <div class="row">
+          <span>Quantity</span>
+          <span id="quantityDisplay">1,000</span>
+        </div>
+
+      </div>
+
+
+      <div class="price-card">
+
+        <div class="price-label">
+          TOTAL PRICE
+        </div>
+
+        <div class="price">
+          <span id="totalPrice">0.00</span>
+          <small>KSH</small>
+        </div>
+
+      </div>
+
+
+      <button
+        id="submitBtn"
+        class="submit"
+        type="submit">
+
+        Place Order
+
+      </button>
+
+    </form>
+
+  </section>
+
+</main>
+
+
+<script>
+
+/* MENU */
+
+function openMenu(){
+
+  document
+    .getElementById("sideMenu")
+    .classList.add("open");
+
+  document
+    .getElementById("overlay")
+    .classList.add("show");
+}
+
+function closeMenu(){
+
+  document
+    .getElementById("sideMenu")
+    .classList.remove("open");
+
+  document
+    .getElementById("overlay")
+    .classList.remove("show");
+}
+
+
+/* ELEMENTS */
+
+const service =
+  document.getElementById("service");
+
+const quantity =
+  document.getElementById("quantity");
+
+const serviceName =
+  document.getElementById("serviceName");
+
+const rate =
+  document.getElementById("rate");
+
+const quantityDisplay =
+  document.getElementById("quantityDisplay");
+
+const totalPrice =
+  document.getElementById("totalPrice");
+
+
+/* CALCULATE PRICE */
+
+function calculatePrice(){
+
+  const option =
+    service.options[service.selectedIndex];
+
+  const servicePrice =
+    Number(option?.dataset?.price || 0);
+
+  const qty =
+    Number(quantity.value || 0);
+
+  const total =
+    servicePrice * qty / 1000;
+
+  serviceName.textContent =
+    option?.dataset?.name || "Not selected";
+
+  rate.textContent =
+    servicePrice.toFixed(2);
+
+  quantityDisplay.textContent =
+    qty.toLocaleString();
+
+  totalPrice.textContent =
+    total.toFixed(2);
+}
+
+
+service.addEventListener(
+  "change",
+  calculatePrice
+);
+
+quantity.addEventListener(
+  "input",
+  calculatePrice
+);
+
+calculatePrice();
+
+
+/* MESSAGE */
+
+function showMessage(text,type){
+
+  const box =
+    document.getElementById("message");
+
+  box.textContent=text;
+
+  box.className =
+    "message show " + type;
+}
+
+
+/* LOAD BALANCE */
+
+async function loadBalance(){
+
+  try{
+
+    const response =
+      await fetch(
+        "/api/dashboard",
+        {
+          credentials:"include"
+        }
+      );
+
+    if(response.status === 401){
+
+      location.href="/login.html";
+
+      return;
+    }
+
+    if(!response.ok) return;
+
+    const data =
+      await response.json();
+
+    document
+      .getElementById("balance")
+      .textContent =
+      Number(
+        data.balanceKsh || 0
+      ).toFixed(2);
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+}
+
+loadBalance();
+
+
+/* SUBMIT ORDER */
+
+document
+  .getElementById("boostForm")
+  .addEventListener(
+    "submit",
+    async function(event){
+
+      event.preventDefault();
+
+      const option =
+        service.options[service.selectedIndex];
+
+      const serviceId =
+        service.value;
+
+      const link =
+        document
+          .getElementById("link")
+          .value
+          .trim();
+
+      const qty =
+        Number(quantity.value);
+
+      const servicePrice =
+        Number(option?.dataset?.price || 0);
+
+      const amount =
+        servicePrice * qty / 1000;
+
+
+      if(!serviceId){
+
+        showMessage(
+          "Please select a service.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      if(!link){
+
+        showMessage(
+          "Please enter the social media link.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      if(qty < 100){
+
+        showMessage(
+          "Minimum quantity is 100.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      const button =
+        document.getElementById(
+          "submitBtn"
+        );
+
+      button.disabled=true;
+      button.textContent="Processing...";
+
+
+      try{
+
+        const response =
+          await fetch(
+            "/api/orders",
+            {
+              method:"POST",
+
+              credentials:"include",
+
+              headers:{
+                "Content-Type":
+                  "application/json"
+              },
+
+              body:JSON.stringify({
+
+                service:serviceId,
+
+                serviceName:
+                  option.dataset.name,
+
+                link:link,
+
+                quantity:qty,
+
+                amount:amount
+
+              })
+            }
+          );
+
+
+        const data =
+          await response.json()
+            .catch(() => ({}));
+
+
+        if(response.status === 401){
+
+          location.href="/login.html";
+
+          return;
+        }
+
+
+        if(!response.ok){
+
+          showMessage(
+            data.message ||
+            data.error ||
+            "Order failed.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        showMessage(
+          data.message ||
+          "Order placed successfully.",
+          "success"
+        );
+
+
+        document
+          .getElementById("boostForm")
+          .reset();
+
+        quantity.value=1000;
+
+        calculatePrice();
+
+        loadBalance();
+
+      }catch(error){
+
+        console.error(error);
+
+        showMessage(
+          "Unable to connect to server.",
+          "error"
+        );
+
+      }finally{
+
+        button.disabled=false;
+        button.textContent="Place Order";
+
+      }
+
+    }
+  );
+
+</script>
+
+</body>
+  </html>
